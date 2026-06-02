@@ -1,0 +1,72 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: cm_postgres
+    environment:
+      POSTGRES_DB: tradebreaks
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: apppassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U appuser -d tradebreaks"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cm_api
+    command: uvicorn app.api.main:app --host 0.0.0.0 --port 8000 --reload
+    environment:
+      APP_ENV: dev
+      APP_NAME: Capital Markets Exception Resolution Agent
+      APP_HOST: 0.0.0.0
+      APP_PORT: 8000
+
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: tradebreaks
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: apppassword
+
+      CHROMA_PATH: /app/storage/chroma
+      CHROMA_COLLECTION: policy_knowledge_base
+
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      API_BASE_URL: http://api:8000
+    volumes:
+      - ./:/app
+      - chroma_data:/app/storage/chroma
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cm_ui
+    command: streamlit run app/ui/streamlit_app.py --server.address=0.0.0.0 --server.port=8501
+    environment:
+      APP_ENV: dev
+      API_BASE_URL: http://api:8000
+    volumes:
+      - ./:/app
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
+  chroma_data:
