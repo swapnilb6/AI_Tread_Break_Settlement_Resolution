@@ -1,9 +1,14 @@
 Run order
 1. Generate synthetic CSVs
-Shellpython -m app.synthetic_data.generate_datasets --output-dir data/synthetic --num-cases 500 --seed 42
+python -m app.synthetic_data.generate_datasets --output-dir data/synthetic --num-cases 500 --seed 42
 2. Start services
-Shelldocker compose up --build
+docker compose up --build
 3. Load CSVs into Postgres
-Shellpython -m app.synthetic_data.load_to_postgres --data-dir data/syntheticShow more lines
+python -m app.synthetic_data.load_to_postgres --data-dir data/synthetic
 4. Smoke test retrieval APIs
-Shellpython -m app.evaluation.retrieval_smoke_test --base-url http://localhost:8000 --data-dir data/synthetic
+python -m app.evaluation.retrieval_smoke_test --base-url http://localhost:8000 --data-dir data/synthetic
+---------
+2) Build index
+python -m app.rag.index_builder --policy-dir data/policies --reset
+3) Smoke test retrieval
+python -m app.evaluation.rag_smoke_test

@@ -23,7 +23,8 @@ project-root/
 │  │  ├─ __init__.py
 │  │  ├─ common.py
 │  │  ├─ case.py
-│  │  └─ reference_data.py
+│  │  ├─ reference_data.py
+│  │  └─ rag.py
 │  │
 │  ├─ db/
 │  │  ├─ __init__.py
@@ -43,7 +44,11 @@ project-root/
 │  ├─ rag/
 │  │  ├─ __init__.py
 │  │  ├─ chroma_client.py
-│  │  ├─ ingest.py
+│  │  ├─ document_loader.py
+│  │  ├─ chunker.py
+│  │  ├─ metadata_enricher.py
+│  │  ├─ embedder.py
+│  │  ├─ index_builder.py
 │  │  └─ retriever.py
 │  │
 │  ├─ agents/
@@ -72,6 +77,13 @@ project-root/
 │
 ├─ data/
 │  └─ policies/
+│     ├─ failed_settlement_sop.md
+│     ├─ ssi_validation_playbook.md
+│     ├─ escalation_matrix.md
+│     ├─ holiday_guidance.md
+│     ├─ settlement_instruction_policy.md
+│     ├─ audit_policy.md
+│     └─ manual_override_guidelines.md
 │
 ├─ requirements.txt
 ├─ Dockerfile
@@ -92,6 +104,7 @@ FastAPI routers and main application entry point.
 ### app/schemas/
 Pydantic models for request/response validation.
 - `reference_data.py`: Reference data schemas
+- `rag.py`: RAG-related schemas for documents and queries
 
 ### app/db/
 Database configuration and models.
@@ -118,6 +131,13 @@ Testing and quality assurance modules.
 
 ### app/rag/
 Retrieval-Augmented Generation (RAG) implementation.
+- `chroma_client.py`: Chroma vector database client
+- `document_loader.py`: Load and parse documents
+- `chunker.py`: Split documents into chunks for embedding
+- `metadata_enricher.py`: Enrich chunks with metadata
+- `embedder.py`: Generate embeddings for documents
+- `index_builder.py`: Build and manage vector indices
+- `retriever.py`: Retrieve relevant documents for queries
 
 ### app/agents/
 AI agents and orchestration.
@@ -133,3 +153,13 @@ External storage for vector databases and other data.
 
 ### data/
 Static and reference data files.
+
+### data/policies/
+Policy documents and operational guidelines.
+- `failed_settlement_sop.md`: Standard operating procedure for failed settlements
+- `ssi_validation_playbook.md`: SSI validation guidelines
+- `escalation_matrix.md`: Escalation procedures and matrix
+- `holiday_guidance.md`: Holiday-specific guidance
+- `settlement_instruction_policy.md`: Settlement instruction policies
+- `audit_policy.md`: Audit and compliance policies
+- `manual_override_guidelines.md`: Guidelines for manual overrides
