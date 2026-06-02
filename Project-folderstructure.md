@@ -53,11 +53,28 @@ project-root/
 │  │
 │  ├─ agents/
 │  │  ├─ __init__.py
-│  │  └─ intake_agent.py
+│  │  ├─ base.py
+│  │  ├─ intake_agent.py
+│  │  ├─ retrieval_agent.py
+│  │  ├─ policy_rag_agent.py
+│  │  ├─ root_cause_agent.py
+│  │  ├─ recommendation_agent.py
+│  │  ├─ hitl_agent.py
+│  │  └─ audit_agent.py
+│  │
+│  ├─ tools/
+│  │  ├─ __init__.py
+│  │  ├─ reference_data_tools.py
+│  │  └─ rag_tools.py
+│  │
+│  ├─ policy/
+│  │  ├─ __init__.py
+│  │  └─ approval_policy.py
 │  │
 │  ├─ orchestration/
 │  │  ├─ __init__.py
-│  │  └─ flow.py
+│  │  ├─ flow.py
+│  │  └─ tasks.py
 │  │
 │  ├─ utils/
 │  │  ├─ __init__.py
@@ -70,7 +87,8 @@ project-root/
 │  │
 │  └─ evaluation/
 │     ├─ __init__.py
-│     └─ retrieval_smoke_test.py
+│     ├─ retrieval_smoke_test.py
+│     └─ standalone_agents_smoke.py
 │
 ├─ storage/
 │  └─ chroma/
@@ -128,6 +146,7 @@ Synthetic data generation and loading utilities.
 ### app/evaluation/
 Testing and quality assurance modules.
 - `retrieval_smoke_test.py`: Smoke tests for retrieval functionality
+- `standalone_agents_smoke.py`: Smoke tests for individual agents
 
 ### app/rag/
 Retrieval-Augmented Generation (RAG) implementation.
@@ -140,10 +159,29 @@ Retrieval-Augmented Generation (RAG) implementation.
 - `retriever.py`: Retrieve relevant documents for queries
 
 ### app/agents/
-AI agents and orchestration.
+AI agents for case processing and decision-making.
+- `base.py`: Base agent class with common functionality
+- `intake_agent.py`: Handles case intake and initial assessment
+- `retrieval_agent.py`: Retrieves relevant policies and documents
+- `policy_rag_agent.py`: RAG-enabled agent for policy matching
+- `root_cause_agent.py`: Analyzes root causes of settlement failures
+- `recommendation_agent.py`: Generates recommendations for case resolution
+- `hitl_agent.py`: Human-in-the-loop agent for escalated cases
+- `audit_agent.py`: Handles audit logging and compliance tracking
+
+### app/tools/
+Reusable tools for agent operations.
+- `reference_data_tools.py`: Tools for accessing reference data repositories
+- `rag_tools.py`: RAG-specific tools for document retrieval and querying
+
+### app/policy/
+Policy management and approval workflows.
+- `approval_policy.py`: Defines approval policies and business rules
 
 ### app/orchestration/
-Workflow and process orchestration.
+Workflow and task orchestration.
+- `flow.py`: Main workflow orchestration logic
+- `tasks.py`: Task definitions and execution logic
 
 ### app/ui/
 User interface (Streamlit).
