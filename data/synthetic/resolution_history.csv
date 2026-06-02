@@ -1,0 +1,501 @@
+case_id,exception_signature,root_cause,final_action,human_override_flag,agent_confidence,resolved_by,resolution_time_hours,outcome
+EXC_a62e9e82fe,COUNTERPARTY_DISCREPANCY|SG|EUR|CP019,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.46,ops_analyst,4.75,RESOLVED
+EXC_a97238753d,HOLIDAY_SETTLEMENT_ERROR|JP|JPY|CP007,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.8,ops_analyst,10.55,RESOLVED
+EXC_dcb71c4efb,AMBIGUOUS_NOISY|SG|SGD|CP022,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.57,human_reviewer,20.05,PENDING_REMEDIATION
+EXC_0e41189682,AMBIGUOUS_NOISY|GB|SGD|CP005,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.52,human_reviewer,19.93,RESOLVED
+EXC_9e1482af96,HOLIDAY_SETTLEMENT_ERROR|JP|USD|CP021,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.79,human_reviewer,11.35,RESOLVED
+EXC_89798203e3,MISSING_REFERENCE_DATA|JP|EUR|CP015,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,True,0.56,human_reviewer,4.11,RESOLVED
+EXC_6111510958,PRICE_MISMATCH|GB|GBP|CP007,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.82,agent,2.7,RESOLVED
+EXC_f9cfe545b6,MISSING_REFERENCE_DATA|JP|GBP|CP016,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.37,ops_analyst,5.13,RESOLVED
+EXC_de00cc51d3,SSI_MISMATCH|IN|INR|CP013,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.81,team_lead,3.29,RESOLVED
+EXC_693c266a49,WRONG_ACCOUNT|US|USD|CP003,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.74,human_reviewer,8.61,RESOLVED
+EXC_919b796014,MISSING_REFERENCE_DATA|SG|JPY|CP005,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.46,agent,3.13,RESOLVED
+EXC_5a8fa5bc0e,SSI_MISMATCH|SG|INR|CP003,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.82,agent,4.23,RESOLVED
+EXC_b31d0c3563,SSI_MISMATCH|JP|USD|CP012,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.82,human_reviewer,2.94,RESOLVED
+EXC_620500bbde,PRICE_MISMATCH|IN|SGD|CP017,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.87,ops_analyst,13.48,RESOLVED
+EXC_591f31e4f2,BOOKING_MISMATCH|JP|USD|CP003,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.78,human_reviewer,10.39,RESOLVED
+EXC_b11a4c7bcb,PRICE_MISMATCH|GB|INR|CP007,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.74,agent,7.93,RESOLVED
+EXC_38c849a842,HOLIDAY_SETTLEMENT_ERROR|EU|GBP|CP002,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.74,agent,10.69,RESOLVED
+EXC_ff1005de73,AMBIGUOUS_NOISY|SG|JPY|CP008,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.43,human_reviewer,25.68,RESOLVED
+EXC_12e478625f,QUANTITY_MISMATCH|IN|SGD|CP005,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.84,human_reviewer,4.4,RESOLVED
+EXC_b1cc9a61ec,MISSING_INSTRUCTION|US|GBP|CP005,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.87,team_lead,12.29,RESOLVED
+EXC_454b41e226,AMBIGUOUS_NOISY|IN|EUR|CP008,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.56,human_reviewer,14.18,PENDING_REMEDIATION
+EXC_d15864aecb,WRONG_ACCOUNT|JP|USD|CP027,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.73,human_reviewer,14.76,RESOLVED
+EXC_d9a5739384,MISSING_INSTRUCTION|SG|EUR|CP016,MISSING_SSI,Request missing instructions from counterparty/custodian,True,0.92,human_reviewer,8.5,RESOLVED
+EXC_4306643d77,HOLIDAY_SETTLEMENT_ERROR|US|SGD|CP018,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.83,ops_analyst,10.54,RESOLVED
+EXC_1864bd8e5e,PRICE_MISMATCH|SG|USD|CP009,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,True,0.91,human_reviewer,7.87,RESOLVED
+EXC_748890c581,MISSING_REFERENCE_DATA|GB|USD|CP010,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.4,ops_analyst,11.38,RESOLVED
+EXC_c3a7c35ae4,AMBIGUOUS_NOISY|IN|GBP|CP030,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.45,human_reviewer,30.03,PENDING_REMEDIATION
+EXC_38cdc8299b,BOOKING_MISMATCH|GB|INR|CP001,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.85,human_reviewer,17.94,RESOLVED
+EXC_cd5f84151e,COUNTERPARTY_DISCREPANCY|EU|EUR|CP021,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.57,ops_analyst,15.51,RESOLVED
+EXC_dc98d6ed5d,WRONG_ACCOUNT|EU|SGD|CP022,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.81,human_reviewer,9.58,RESOLVED
+EXC_bb0c1caf57,COUNTERPARTY_DISCREPANCY|IN|EUR|CP015,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.6,agent,1.83,RESOLVED
+EXC_ed2acc8f88,WRONG_ACCOUNT|GB|GBP|CP017,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.76,human_reviewer,10.37,RESOLVED
+EXC_1a17c829ca,MISSING_REFERENCE_DATA|IN|GBP|CP029,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.39,team_lead,7.23,RESOLVED
+EXC_2a403a8744,AMBIGUOUS_NOISY|EU|INR|CP007,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.4,human_reviewer,10.78,RESOLVED
+EXC_286e3006fd,MISSING_INSTRUCTION|EU|JPY|CP016,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.81,human_reviewer,7.01,RESOLVED
+EXC_a6f6083f5d,WRONG_ACCOUNT|IN|GBP|CP012,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.84,human_reviewer,1.68,RESOLVED
+EXC_b1c8c31311,SSI_MISMATCH|SG|GBP|CP005,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.75,ops_analyst,7.25,RESOLVED
+EXC_c1301edd09,QUANTITY_MISMATCH|SG|SGD|CP026,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.83,team_lead,7.28,RESOLVED
+EXC_2ad57fe5c5,SSI_MISMATCH|GB|JPY|CP023,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.77,ops_analyst,4.7,RESOLVED
+EXC_08c077e090,QUANTITY_MISMATCH|EU|GBP|CP008,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.88,human_reviewer,12.21,RESOLVED
+EXC_e9740ee6f5,SSI_MISMATCH|IN|GBP|CP007,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.93,human_reviewer,8.14,RESOLVED
+EXC_73842be7b2,MISSING_REFERENCE_DATA|EU|GBP|CP025,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.62,team_lead,9.15,RESOLVED
+EXC_08c55df82c,COUNTERPARTY_DISCREPANCY|GB|INR|CP029,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.39,human_reviewer,5.85,RESOLVED
+EXC_f2f4b72cb0,PRICE_MISMATCH|EU|JPY|CP001,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.87,ops_analyst,15.11,RESOLVED
+EXC_b1d57e839d,WRONG_ACCOUNT|GB|EUR|CP020,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.73,human_reviewer,9.21,RESOLVED
+EXC_0fa0e38407,COUNTERPARTY_DISCREPANCY|GB|INR|CP017,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.46,human_reviewer,13.25,RESOLVED
+EXC_d2cab1a69d,COUNTERPARTY_DISCREPANCY|US|USD|CP019,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,True,0.62,human_reviewer,6.9,RESOLVED
+EXC_4078674efe,BOOKING_MISMATCH|SG|EUR|CP005,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.78,human_reviewer,8.02,RESOLVED
+EXC_dff76f51ee,HOLIDAY_SETTLEMENT_ERROR|US|JPY|CP020,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.93,human_reviewer,15.79,RESOLVED
+EXC_2f1f83ecad,MISSING_REFERENCE_DATA|EU|GBP|CP014,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.41,human_reviewer,13.86,RESOLVED
+EXC_7d091910ab,MISSING_REFERENCE_DATA|JP|USD|CP026,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.56,human_reviewer,11.86,RESOLVED
+EXC_59ef2542d7,MISSING_REFERENCE_DATA|GB|GBP|CP016,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.57,ops_analyst,11.84,RESOLVED
+EXC_e4b383b656,BOOKING_MISMATCH|GB|GBP|CP030,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.85,human_reviewer,34.3,RESOLVED
+EXC_d25c0eff01,SSI_MISMATCH|EU|JPY|CP011,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.82,human_reviewer,13.64,RESOLVED
+EXC_74424542b4,AMBIGUOUS_NOISY|SG|EUR|CP003,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.42,human_reviewer,24.59,RESOLVED
+EXC_0c68e93de8,SSI_MISMATCH|EU|GBP|CP027,SSI_MISMATCH,Validate SSI against active master and resend instruction,True,0.92,human_reviewer,10.67,RESOLVED
+EXC_35e6f08245,AMBIGUOUS_NOISY|IN|USD|CP011,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.45,human_reviewer,28.19,PENDING_REMEDIATION
+EXC_47f19ca1e0,HOLIDAY_SETTLEMENT_ERROR|SG|GBP|CP017,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,True,0.87,human_reviewer,12.97,RESOLVED
+EXC_1967f6d60a,PRICE_MISMATCH|US|USD|CP023,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,True,0.74,human_reviewer,9.31,RESOLVED
+EXC_0bb9c716ae,MISSING_INSTRUCTION|IN|GBP|CP020,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.91,human_reviewer,6.42,RESOLVED
+EXC_c6701d8fc3,MISSING_INSTRUCTION|SG|JPY|CP024,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.76,ops_analyst,6.97,RESOLVED
+EXC_d1cd97fef8,MISSING_INSTRUCTION|SG|SGD|CP010,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.91,team_lead,7.14,RESOLVED
+EXC_c366e5fef4,HOLIDAY_SETTLEMENT_ERROR|SG|GBP|CP005,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.87,team_lead,9.45,RESOLVED
+EXC_e3babeddf5,HOLIDAY_SETTLEMENT_ERROR|EU|JPY|CP025,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,True,0.82,human_reviewer,15.43,RESOLVED
+EXC_1c866ef757,BOOKING_MISMATCH|SG|EUR|CP004,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.94,human_reviewer,28.21,RESOLVED
+EXC_d17be07135,COUNTERPARTY_DISCREPANCY|GB|INR|CP017,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.57,ops_analyst,9.05,RESOLVED
+EXC_9e9791a000,HOLIDAY_SETTLEMENT_ERROR|GB|JPY|CP011,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.78,ops_analyst,2.75,RESOLVED
+EXC_32106f0f09,HOLIDAY_SETTLEMENT_ERROR|GB|INR|CP023,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.95,human_reviewer,8.27,RESOLVED
+EXC_f6f979a8be,QUANTITY_MISMATCH|JP|INR|CP027,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.75,ops_analyst,2.71,RESOLVED
+EXC_9b675ee906,BOOKING_MISMATCH|US|SGD|CP018,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.93,human_reviewer,24.31,RESOLVED
+EXC_5a5389bebf,COUNTERPARTY_DISCREPANCY|GB|INR|CP014,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.39,ops_analyst,3.19,RESOLVED
+EXC_cf495f6362,AMBIGUOUS_NOISY|GB|SGD|CP027,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.61,human_reviewer,30.75,RESOLVED
+EXC_69f7bd8a28,PRICE_MISMATCH|EU|GBP|CP009,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.89,ops_analyst,2.98,RESOLVED
+EXC_40a4c57f22,QUANTITY_MISMATCH|EU|USD|CP006,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.83,ops_analyst,1.12,RESOLVED
+EXC_9d3d4a41d4,QUANTITY_MISMATCH|US|JPY|CP027,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.77,team_lead,12.22,RESOLVED
+EXC_6a6b83ecee,PRICE_MISMATCH|SG|JPY|CP020,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.87,team_lead,3.83,RESOLVED
+EXC_5062d5a0ee,MISSING_REFERENCE_DATA|SG|USD|CP010,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.36,team_lead,1.91,RESOLVED
+EXC_ad7ecd188c,MISSING_REFERENCE_DATA|EU|SGD|CP017,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.47,human_reviewer,15.3,RESOLVED
+EXC_088cba7f31,HOLIDAY_SETTLEMENT_ERROR|GB|USD|CP002,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.75,ops_analyst,14.5,RESOLVED
+EXC_1bdf1038d2,COUNTERPARTY_DISCREPANCY|JP|GBP|CP026,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,True,0.45,human_reviewer,14.8,RESOLVED
+EXC_686ddbeb40,AMBIGUOUS_NOISY|US|INR|CP006,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.35,human_reviewer,12.02,RESOLVED
+EXC_077ce9096a,COUNTERPARTY_DISCREPANCY|IN|EUR|CP024,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.61,human_reviewer,15.59,RESOLVED
+EXC_b1a9284659,COUNTERPARTY_DISCREPANCY|EU|USD|CP023,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.55,ops_analyst,5.77,RESOLVED
+EXC_2eb5521b8a,WRONG_ACCOUNT|US|EUR|CP008,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.92,human_reviewer,11.45,RESOLVED
+EXC_9f2bbc035b,COUNTERPARTY_DISCREPANCY|GB|GBP|CP002,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.46,agent,11.29,RESOLVED
+EXC_6e71727bc5,WRONG_ACCOUNT|IN|GBP|CP019,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.88,human_reviewer,3.59,RESOLVED
+EXC_5e2e83a3e3,MISSING_INSTRUCTION|GB|GBP|CP007,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.91,team_lead,6.39,RESOLVED
+EXC_3ae7d757b1,AMBIGUOUS_NOISY|IN|INR|CP012,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.4,human_reviewer,23.78,RESOLVED
+EXC_77c76f55e3,PRICE_MISMATCH|IN|USD|CP030,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.87,ops_analyst,13.1,RESOLVED
+EXC_636913b59b,BOOKING_MISMATCH|GB|GBP|CP023,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.9,human_reviewer,19.11,RESOLVED
+EXC_0f1cf602ba,HOLIDAY_SETTLEMENT_ERROR|JP|SGD|CP021,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.74,ops_analyst,8.44,RESOLVED
+EXC_295c062141,QUANTITY_MISMATCH|US|EUR|CP024,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.9,team_lead,15.54,RESOLVED
+EXC_9c1a578e12,MISSING_INSTRUCTION|JP|GBP|CP016,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.85,agent,14.47,RESOLVED
+EXC_62aa7ca318,MISSING_REFERENCE_DATA|IN|INR|CP011,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,True,0.35,human_reviewer,2.31,RESOLVED
+EXC_4a5c53756b,PRICE_MISMATCH|SG|SGD|CP027,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.83,team_lead,4.95,RESOLVED
+EXC_e6bb0d36b1,SSI_MISMATCH|GB|GBP|CP009,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.81,agent,13.81,RESOLVED
+EXC_de75171c2c,WRONG_ACCOUNT|IN|INR|CP017,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.74,human_reviewer,9.35,RESOLVED
+EXC_6879c497f3,PRICE_MISMATCH|EU|GBP|CP018,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.78,team_lead,10.82,RESOLVED
+EXC_92dd666f5e,QUANTITY_MISMATCH|GB|GBP|CP002,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.88,human_reviewer,15.59,RESOLVED
+EXC_2c57025657,SSI_MISMATCH|EU|SGD|CP005,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.92,agent,14.19,RESOLVED
+EXC_f764994e3b,SSI_MISMATCH|GB|EUR|CP006,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.8,ops_analyst,3.45,RESOLVED
+EXC_1c5f5b8cb3,MISSING_INSTRUCTION|SG|USD|CP024,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.87,ops_analyst,15.15,RESOLVED
+EXC_ba2fd8ed23,COUNTERPARTY_DISCREPANCY|JP|GBP|CP014,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.54,ops_analyst,14.39,RESOLVED
+EXC_6207ce313d,AMBIGUOUS_NOISY|GB|INR|CP007,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.43,human_reviewer,20.12,RESOLVED
+EXC_df0a033bd6,MISSING_REFERENCE_DATA|IN|EUR|CP024,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.45,agent,5.48,RESOLVED
+EXC_8dd4c9ce69,COUNTERPARTY_DISCREPANCY|GB|EUR|CP028,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.56,team_lead,2.32,RESOLVED
+EXC_793bd21e0b,BOOKING_MISMATCH|JP|JPY|CP021,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.81,human_reviewer,23.66,RESOLVED
+EXC_78724bdfde,BOOKING_MISMATCH|US|USD|CP006,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.77,human_reviewer,6.66,RESOLVED
+EXC_cfbecca5ec,WRONG_ACCOUNT|GB|USD|CP017,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.75,human_reviewer,4.79,RESOLVED
+EXC_9ec8d0fc57,SSI_MISMATCH|GB|EUR|CP023,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.92,ops_analyst,15.6,RESOLVED
+EXC_a08664464b,MISSING_REFERENCE_DATA|JP|GBP|CP023,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.61,agent,4.96,RESOLVED
+EXC_19a90d9855,WRONG_ACCOUNT|GB|USD|CP004,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.76,human_reviewer,7.01,RESOLVED
+EXC_207710aaef,COUNTERPARTY_DISCREPANCY|EU|JPY|CP015,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.59,human_reviewer,11.91,RESOLVED
+EXC_1d8a321eb3,QUANTITY_MISMATCH|JP|USD|CP016,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.88,human_reviewer,10.62,RESOLVED
+EXC_bc4054b426,WRONG_ACCOUNT|IN|INR|CP027,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.83,human_reviewer,13.02,RESOLVED
+EXC_abcf02126b,SSI_MISMATCH|US|JPY|CP015,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.92,ops_analyst,13.66,RESOLVED
+EXC_97901f68e6,COUNTERPARTY_DISCREPANCY|IN|INR|CP018,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,True,0.51,human_reviewer,3.81,RESOLVED
+EXC_9aa0e34291,COUNTERPARTY_DISCREPANCY|JP|EUR|CP030,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.56,human_reviewer,14.65,RESOLVED
+EXC_6f618d2f80,MISSING_REFERENCE_DATA|GB|USD|CP024,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.52,ops_analyst,5.36,RESOLVED
+EXC_9192eb93f2,PRICE_MISMATCH|SG|EUR|CP030,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,True,0.75,human_reviewer,11.05,RESOLVED
+EXC_bf3922cfc3,PRICE_MISMATCH|EU|EUR|CP007,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.73,team_lead,6.72,RESOLVED
+EXC_7b78bb4920,HOLIDAY_SETTLEMENT_ERROR|SG|GBP|CP026,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.76,team_lead,8.71,RESOLVED
+EXC_708b04433f,BOOKING_MISMATCH|JP|GBP|CP002,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.74,human_reviewer,27.23,RESOLVED
+EXC_7ecf4dd24f,SSI_MISMATCH|GB|EUR|CP017,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.87,human_reviewer,14.78,RESOLVED
+EXC_96a974cd07,SSI_MISMATCH|SG|GBP|CP002,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.77,human_reviewer,10.44,RESOLVED
+EXC_8e4054d0a4,BOOKING_MISMATCH|SG|JPY|CP028,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.86,human_reviewer,12.83,RESOLVED
+EXC_bb3e4664db,WRONG_ACCOUNT|JP|JPY|CP009,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.87,human_reviewer,5.22,RESOLVED
+EXC_456d574181,SSI_MISMATCH|JP|JPY|CP030,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.72,agent,9.95,RESOLVED
+EXC_615d2ab9ac,WRONG_ACCOUNT|GB|SGD|CP010,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.79,human_reviewer,2.01,RESOLVED
+EXC_f67dd8d5df,SSI_MISMATCH|GB|SGD|CP004,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.76,human_reviewer,5.7,RESOLVED
+EXC_4f8ab9ab42,PRICE_MISMATCH|SG|SGD|CP023,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.93,agent,13.74,RESOLVED
+EXC_25b7a2684c,PRICE_MISMATCH|IN|INR|CP027,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.84,human_reviewer,10.94,RESOLVED
+EXC_ea7176dda2,COUNTERPARTY_DISCREPANCY|IN|EUR|CP025,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.36,agent,10.73,RESOLVED
+EXC_8e4a661f37,PRICE_MISMATCH|IN|SGD|CP023,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.84,human_reviewer,10.06,RESOLVED
+EXC_4faeea83f3,AMBIGUOUS_NOISY|GB|EUR|CP015,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.39,human_reviewer,21.38,PENDING_REMEDIATION
+EXC_ffeed52f40,MISSING_REFERENCE_DATA|GB|GBP|CP002,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.49,ops_analyst,3.52,RESOLVED
+EXC_d8537f0274,MISSING_REFERENCE_DATA|JP|INR|CP030,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.5,team_lead,1.02,RESOLVED
+EXC_388f0f9642,HOLIDAY_SETTLEMENT_ERROR|JP|GBP|CP017,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.72,agent,12.15,RESOLVED
+EXC_0fbbcf4e82,QUANTITY_MISMATCH|IN|USD|CP019,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.82,team_lead,12.76,RESOLVED
+EXC_6c73050258,MISSING_INSTRUCTION|EU|INR|CP006,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.87,agent,11.27,RESOLVED
+EXC_19f045a901,COUNTERPARTY_DISCREPANCY|JP|SGD|CP006,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.47,ops_analyst,4.03,RESOLVED
+EXC_659015ed6b,COUNTERPARTY_DISCREPANCY|US|INR|CP007,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.57,human_reviewer,4.39,RESOLVED
+EXC_ae14b8d87e,WRONG_ACCOUNT|JP|INR|CP015,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.9,human_reviewer,15.42,RESOLVED
+EXC_a0ec61f698,PRICE_MISMATCH|SG|JPY|CP015,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,True,0.94,human_reviewer,8.15,RESOLVED
+EXC_024ce76064,SSI_MISMATCH|GB|INR|CP012,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.88,agent,10.95,RESOLVED
+EXC_54b13fa2af,AMBIGUOUS_NOISY|IN|USD|CP025,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.35,human_reviewer,12.32,PENDING_REMEDIATION
+EXC_da61bc7f71,HOLIDAY_SETTLEMENT_ERROR|EU|INR|CP011,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.88,ops_analyst,13.21,RESOLVED
+EXC_6dc8467a17,QUANTITY_MISMATCH|GB|INR|CP026,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.89,ops_analyst,1.9,RESOLVED
+EXC_66dac8e8e2,MISSING_REFERENCE_DATA|SG|USD|CP016,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.48,human_reviewer,15.35,RESOLVED
+EXC_c009667705,SSI_MISMATCH|EU|JPY|CP021,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.78,agent,4.77,RESOLVED
+EXC_1d470b359d,AMBIGUOUS_NOISY|GB|JPY|CP007,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.36,human_reviewer,25.91,RESOLVED
+EXC_c173f23855,PRICE_MISMATCH|JP|JPY|CP028,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.76,human_reviewer,1.16,RESOLVED
+EXC_7cc7e7aaa6,AMBIGUOUS_NOISY|EU|JPY|CP012,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.52,human_reviewer,21.5,RESOLVED
+EXC_685822c4b8,HOLIDAY_SETTLEMENT_ERROR|SG|SGD|CP010,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.79,team_lead,2.88,RESOLVED
+EXC_2e1a31f7d1,HOLIDAY_SETTLEMENT_ERROR|US|EUR|CP024,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.78,agent,6.72,RESOLVED
+EXC_a206c717c8,MISSING_REFERENCE_DATA|SG|EUR|CP004,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.59,human_reviewer,13.95,RESOLVED
+EXC_d698ccabe9,SSI_MISMATCH|GB|SGD|CP004,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.8,agent,15.54,RESOLVED
+EXC_99caef114e,MISSING_INSTRUCTION|EU|SGD|CP002,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.85,human_reviewer,8.35,RESOLVED
+EXC_7cfe8a568e,SSI_MISMATCH|EU|GBP|CP018,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.78,team_lead,11.82,RESOLVED
+EXC_bb2f5bba8b,QUANTITY_MISMATCH|IN|SGD|CP007,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.92,ops_analyst,10.87,RESOLVED
+EXC_e8965676a1,AMBIGUOUS_NOISY|EU|EUR|CP002,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.4,human_reviewer,25.71,PENDING_REMEDIATION
+EXC_1913a3a1e4,MISSING_REFERENCE_DATA|SG|INR|CP018,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.46,ops_analyst,10.5,RESOLVED
+EXC_70569453b2,MISSING_INSTRUCTION|GB|INR|CP020,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.73,ops_analyst,13.33,RESOLVED
+EXC_892296a17d,BOOKING_MISMATCH|IN|INR|CP030,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.89,human_reviewer,29.79,RESOLVED
+EXC_e369ff167d,WRONG_ACCOUNT|JP|SGD|CP006,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.73,human_reviewer,8.87,RESOLVED
+EXC_d0212f39db,PRICE_MISMATCH|IN|INR|CP011,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.78,team_lead,6.98,RESOLVED
+EXC_1b8029b625,QUANTITY_MISMATCH|SG|EUR|CP025,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.77,agent,6.17,RESOLVED
+EXC_bdd5ad880d,HOLIDAY_SETTLEMENT_ERROR|EU|EUR|CP025,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.73,human_reviewer,4.14,RESOLVED
+EXC_8d33ca5535,AMBIGUOUS_NOISY|IN|INR|CP007,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.36,human_reviewer,32.02,RESOLVED
+EXC_6f181a3948,BOOKING_MISMATCH|JP|INR|CP008,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.8,human_reviewer,16.56,RESOLVED
+EXC_f8424c9da7,WRONG_ACCOUNT|EU|EUR|CP021,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.82,human_reviewer,5.69,RESOLVED
+EXC_99f7dec76e,HOLIDAY_SETTLEMENT_ERROR|EU|JPY|CP020,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.93,ops_analyst,11.91,RESOLVED
+EXC_a60e785ce2,HOLIDAY_SETTLEMENT_ERROR|JP|JPY|CP029,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,True,0.91,human_reviewer,3.01,RESOLVED
+EXC_5652dbc1a4,MISSING_REFERENCE_DATA|IN|JPY|CP028,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.48,team_lead,5.87,RESOLVED
+EXC_d4379ba918,HOLIDAY_SETTLEMENT_ERROR|GB|JPY|CP029,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.84,agent,10.46,RESOLVED
+EXC_c81c793fdf,AMBIGUOUS_NOISY|EU|JPY|CP007,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.37,human_reviewer,15.72,PENDING_REMEDIATION
+EXC_66fc766089,MISSING_REFERENCE_DATA|SG|USD|CP023,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.43,team_lead,12.53,RESOLVED
+EXC_4e1f6d09fa,SSI_MISMATCH|SG|EUR|CP010,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.72,ops_analyst,14.23,RESOLVED
+EXC_478f1453db,WRONG_ACCOUNT|SG|INR|CP020,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.95,human_reviewer,12.24,RESOLVED
+EXC_ed08feef17,PRICE_MISMATCH|US|USD|CP012,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.87,ops_analyst,12.82,RESOLVED
+EXC_10a0695495,AMBIGUOUS_NOISY|IN|GBP|CP014,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.44,human_reviewer,22.81,PENDING_REMEDIATION
+EXC_a6dbb93085,PRICE_MISMATCH|SG|EUR|CP001,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.91,team_lead,10.68,RESOLVED
+EXC_386609bcfe,BOOKING_MISMATCH|SG|JPY|CP005,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.92,human_reviewer,16.17,RESOLVED
+EXC_85f3072e0f,MISSING_REFERENCE_DATA|SG|INR|CP013,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.36,agent,4.03,RESOLVED
+EXC_fe649b1f97,MISSING_INSTRUCTION|IN|USD|CP015,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.88,agent,9.91,RESOLVED
+EXC_9424be4041,HOLIDAY_SETTLEMENT_ERROR|JP|USD|CP011,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.72,agent,10.34,RESOLVED
+EXC_b9a8c6063d,MISSING_INSTRUCTION|IN|GBP|CP007,MISSING_SSI,Request missing instructions from counterparty/custodian,True,0.73,human_reviewer,7.4,RESOLVED
+EXC_d393026e7f,MISSING_INSTRUCTION|SG|INR|CP006,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.95,ops_analyst,3.16,RESOLVED
+EXC_0abf8befff,PRICE_MISMATCH|EU|JPY|CP030,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.88,team_lead,12.89,RESOLVED
+EXC_936676e3d9,PRICE_MISMATCH|IN|JPY|CP013,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.83,team_lead,9.33,RESOLVED
+EXC_c6cec7b383,BOOKING_MISMATCH|EU|JPY|CP006,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.85,human_reviewer,17.7,RESOLVED
+EXC_5df46a6507,PRICE_MISMATCH|JP|EUR|CP019,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,True,0.85,human_reviewer,15.68,RESOLVED
+EXC_75c6a0d0a5,COUNTERPARTY_DISCREPANCY|EU|USD|CP004,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.37,team_lead,1.24,RESOLVED
+EXC_acc45fef1c,QUANTITY_MISMATCH|JP|EUR|CP022,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.92,ops_analyst,4.55,RESOLVED
+EXC_07888abe12,QUANTITY_MISMATCH|IN|INR|CP014,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.85,agent,9.69,RESOLVED
+EXC_1e5ce33993,QUANTITY_MISMATCH|EU|INR|CP029,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.88,agent,5.38,RESOLVED
+EXC_e05db28f8d,QUANTITY_MISMATCH|JP|USD|CP010,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.78,agent,3.71,RESOLVED
+EXC_03da79f8c7,WRONG_ACCOUNT|US|EUR|CP011,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.73,human_reviewer,7.96,RESOLVED
+EXC_8eb213b894,QUANTITY_MISMATCH|EU|JPY|CP016,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.82,ops_analyst,14.77,RESOLVED
+EXC_60d76446c6,QUANTITY_MISMATCH|EU|GBP|CP011,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.85,ops_analyst,11.28,RESOLVED
+EXC_ba6fd4209c,AMBIGUOUS_NOISY|SG|GBP|CP008,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.56,human_reviewer,26.77,RESOLVED
+EXC_35dea7775f,HOLIDAY_SETTLEMENT_ERROR|GB|USD|CP009,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.87,ops_analyst,14.69,RESOLVED
+EXC_1e8a8ba2b4,AMBIGUOUS_NOISY|US|USD|CP004,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.61,human_reviewer,30.54,RESOLVED
+EXC_2faedcb286,MISSING_INSTRUCTION|IN|INR|CP004,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.94,ops_analyst,10.46,RESOLVED
+EXC_7aa329bb41,AMBIGUOUS_NOISY|US|SGD|CP016,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.6,human_reviewer,7.11,PENDING_REMEDIATION
+EXC_19974aa708,QUANTITY_MISMATCH|SG|USD|CP016,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,True,0.77,human_reviewer,6.06,RESOLVED
+EXC_915ca993bd,QUANTITY_MISMATCH|SG|SGD|CP027,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.86,team_lead,3.0,RESOLVED
+EXC_bd1c04e270,WRONG_ACCOUNT|GB|USD|CP025,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.87,human_reviewer,1.56,RESOLVED
+EXC_6a35d5e135,BOOKING_MISMATCH|SG|JPY|CP006,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.79,human_reviewer,11.81,RESOLVED
+EXC_414b654be7,MISSING_INSTRUCTION|GB|SGD|CP026,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.74,team_lead,4.53,RESOLVED
+EXC_bc6d4a528e,PRICE_MISMATCH|IN|GBP|CP019,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.81,human_reviewer,7.87,RESOLVED
+EXC_ceb07e1365,QUANTITY_MISMATCH|EU|GBP|CP021,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,True,0.93,human_reviewer,8.34,RESOLVED
+EXC_f6dd4656c6,BOOKING_MISMATCH|IN|JPY|CP007,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.82,human_reviewer,17.83,RESOLVED
+EXC_18d72e5e50,SSI_MISMATCH|SG|USD|CP026,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.83,team_lead,3.08,RESOLVED
+EXC_03d63825fc,BOOKING_MISMATCH|EU|SGD|CP006,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.9,human_reviewer,7.64,RESOLVED
+EXC_1c6cc85e76,COUNTERPARTY_DISCREPANCY|SG|GBP|CP030,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.59,team_lead,8.55,RESOLVED
+EXC_4840b7cd7f,COUNTERPARTY_DISCREPANCY|US|USD|CP009,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.37,agent,3.47,RESOLVED
+EXC_4d94a66ba7,QUANTITY_MISMATCH|GB|JPY|CP023,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.8,ops_analyst,10.69,RESOLVED
+EXC_62f2af01a4,HOLIDAY_SETTLEMENT_ERROR|IN|SGD|CP016,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.79,human_reviewer,15.6,RESOLVED
+EXC_6a964a5af0,MISSING_REFERENCE_DATA|GB|USD|CP006,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.6,ops_analyst,3.34,RESOLVED
+EXC_4abccd2d00,MISSING_REFERENCE_DATA|SG|GBP|CP021,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,True,0.52,human_reviewer,9.75,RESOLVED
+EXC_09f0e44e75,MISSING_INSTRUCTION|EU|EUR|CP008,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.81,ops_analyst,5.27,RESOLVED
+EXC_e0e170be15,SSI_MISMATCH|JP|INR|CP010,SSI_MISMATCH,Validate SSI against active master and resend instruction,True,0.95,human_reviewer,12.34,RESOLVED
+EXC_5b21d77ce3,AMBIGUOUS_NOISY|US|JPY|CP003,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.53,human_reviewer,32.78,RESOLVED
+EXC_9df6bd0b5e,QUANTITY_MISMATCH|JP|SGD|CP006,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.76,ops_analyst,1.88,RESOLVED
+EXC_baf05f2b20,SSI_MISMATCH|SG|EUR|CP015,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.88,ops_analyst,5.52,RESOLVED
+EXC_53be0cceec,MISSING_INSTRUCTION|IN|INR|CP004,MISSING_SSI,Request missing instructions from counterparty/custodian,True,0.75,human_reviewer,1.26,RESOLVED
+EXC_4e2695cde3,WRONG_ACCOUNT|EU|SGD|CP012,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.82,human_reviewer,12.45,RESOLVED
+EXC_2f758099e6,COUNTERPARTY_DISCREPANCY|US|USD|CP004,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,True,0.39,human_reviewer,12.19,RESOLVED
+EXC_d39a69bee9,PRICE_MISMATCH|IN|GBP|CP009,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.86,agent,7.59,RESOLVED
+EXC_d7ac63c270,WRONG_ACCOUNT|EU|JPY|CP006,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.81,human_reviewer,7.85,RESOLVED
+EXC_a28733503d,BOOKING_MISMATCH|EU|SGD|CP024,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.75,human_reviewer,17.84,RESOLVED
+EXC_21dd76bffb,SSI_MISMATCH|IN|USD|CP023,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.84,team_lead,3.21,RESOLVED
+EXC_56516ed507,COUNTERPARTY_DISCREPANCY|US|GBP|CP004,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.48,ops_analyst,8.57,RESOLVED
+EXC_902b1632f9,QUANTITY_MISMATCH|IN|INR|CP026,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.75,team_lead,11.13,RESOLVED
+EXC_6a7a85bd7a,AMBIGUOUS_NOISY|IN|EUR|CP016,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.53,human_reviewer,13.43,RESOLVED
+EXC_7918130c7b,QUANTITY_MISMATCH|US|SGD|CP019,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.74,human_reviewer,8.33,RESOLVED
+EXC_11767b3b2d,PRICE_MISMATCH|JP|INR|CP011,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.86,team_lead,8.97,RESOLVED
+EXC_bc1aa40fa1,HOLIDAY_SETTLEMENT_ERROR|EU|USD|CP007,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.77,team_lead,15.43,RESOLVED
+EXC_1f471ad344,MISSING_INSTRUCTION|SG|INR|CP009,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.79,human_reviewer,3.41,RESOLVED
+EXC_f1467f538f,MISSING_INSTRUCTION|GB|USD|CP013,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.84,agent,1.3,RESOLVED
+EXC_8874fd7496,WRONG_ACCOUNT|IN|GBP|CP011,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.8,human_reviewer,9.76,RESOLVED
+EXC_19a2ec474a,MISSING_INSTRUCTION|SG|SGD|CP013,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.94,ops_analyst,6.44,RESOLVED
+EXC_21a08b3795,COUNTERPARTY_DISCREPANCY|EU|USD|CP027,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.6,ops_analyst,12.35,RESOLVED
+EXC_d3cf8fce75,HOLIDAY_SETTLEMENT_ERROR|GB|JPY|CP007,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.73,human_reviewer,1.78,RESOLVED
+EXC_2f57834281,SSI_MISMATCH|JP|SGD|CP021,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.77,human_reviewer,7.22,RESOLVED
+EXC_e5c773e3f6,QUANTITY_MISMATCH|JP|INR|CP013,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.86,team_lead,1.21,RESOLVED
+EXC_1886c417ee,MISSING_INSTRUCTION|JP|SGD|CP025,MISSING_SSI,Request missing instructions from counterparty/custodian,True,0.95,human_reviewer,4.53,RESOLVED
+EXC_a740c7263f,HOLIDAY_SETTLEMENT_ERROR|GB|GBP|CP015,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.81,agent,10.1,RESOLVED
+EXC_a8e5582b52,WRONG_ACCOUNT|EU|INR|CP001,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.75,human_reviewer,2.75,RESOLVED
+EXC_9aae1f4cdb,QUANTITY_MISMATCH|GB|JPY|CP002,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.83,team_lead,3.45,RESOLVED
+EXC_0a02ed2a4e,WRONG_ACCOUNT|US|JPY|CP014,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.86,human_reviewer,10.95,RESOLVED
+EXC_838edeb5d4,WRONG_ACCOUNT|IN|USD|CP007,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.83,human_reviewer,11.62,RESOLVED
+EXC_698c1f8b03,MISSING_REFERENCE_DATA|JP|SGD|CP016,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.56,agent,6.98,RESOLVED
+EXC_55e0813102,WRONG_ACCOUNT|GB|EUR|CP028,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.93,human_reviewer,8.15,RESOLVED
+EXC_beb2474cd8,COUNTERPARTY_DISCREPANCY|IN|JPY|CP019,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.62,ops_analyst,11.26,RESOLVED
+EXC_dc03763d7b,QUANTITY_MISMATCH|GB|INR|CP027,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.76,agent,6.89,RESOLVED
+EXC_4a6d0d6598,MISSING_INSTRUCTION|SG|GBP|CP014,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.83,team_lead,11.38,RESOLVED
+EXC_e23ad66c3f,SSI_MISMATCH|IN|INR|CP010,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.87,human_reviewer,12.85,RESOLVED
+EXC_e0d979e516,COUNTERPARTY_DISCREPANCY|EU|JPY|CP003,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.58,ops_analyst,12.06,RESOLVED
+EXC_097e57ac49,AMBIGUOUS_NOISY|JP|JPY|CP002,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.55,human_reviewer,20.08,RESOLVED
+EXC_f64140a9cd,WRONG_ACCOUNT|IN|EUR|CP008,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.88,human_reviewer,2.94,RESOLVED
+EXC_e4b319939e,AMBIGUOUS_NOISY|GB|INR|CP007,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.62,human_reviewer,29.55,PENDING_REMEDIATION
+EXC_921745f08a,WRONG_ACCOUNT|IN|GBP|CP025,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.93,human_reviewer,14.66,RESOLVED
+EXC_bc05faaf5d,SSI_MISMATCH|SG|GBP|CP006,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.88,team_lead,3.27,RESOLVED
+EXC_2545965935,BOOKING_MISMATCH|GB|EUR|CP026,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.9,human_reviewer,25.81,RESOLVED
+EXC_c3ce8225ee,PRICE_MISMATCH|GB|INR|CP021,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.87,team_lead,10.27,RESOLVED
+EXC_a6fc4369ce,BOOKING_MISMATCH|EU|SGD|CP023,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.73,human_reviewer,32.71,RESOLVED
+EXC_50f2efdae1,WRONG_ACCOUNT|IN|GBP|CP018,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.83,human_reviewer,15.74,RESOLVED
+EXC_6cc51e06fc,SSI_MISMATCH|SG|INR|CP026,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.92,agent,2.23,RESOLVED
+EXC_1166d0c323,QUANTITY_MISMATCH|GB|JPY|CP014,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.75,agent,11.57,RESOLVED
+EXC_96f76c1605,MISSING_REFERENCE_DATA|GB|JPY|CP023,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,True,0.39,human_reviewer,12.76,RESOLVED
+EXC_cee3f12fca,HOLIDAY_SETTLEMENT_ERROR|US|GBP|CP014,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.84,team_lead,7.91,RESOLVED
+EXC_0580ff18c4,MISSING_INSTRUCTION|JP|EUR|CP022,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.75,human_reviewer,9.39,RESOLVED
+EXC_4960558bb6,PRICE_MISMATCH|IN|INR|CP020,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.84,ops_analyst,15.01,RESOLVED
+EXC_749c63ab9c,AMBIGUOUS_NOISY|GB|JPY|CP014,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.44,human_reviewer,18.38,RESOLVED
+EXC_37de1fe5d1,MISSING_REFERENCE_DATA|JP|USD|CP009,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.61,human_reviewer,11.13,RESOLVED
+EXC_503861e70d,BOOKING_MISMATCH|IN|SGD|CP025,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.88,human_reviewer,11.02,RESOLVED
+EXC_a2070a334f,MISSING_INSTRUCTION|JP|GBP|CP002,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.77,ops_analyst,8.57,RESOLVED
+EXC_efcf5e0c9d,WRONG_ACCOUNT|SG|GBP|CP029,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.82,human_reviewer,14.43,RESOLVED
+EXC_02f8ed0a2c,BOOKING_MISMATCH|JP|JPY|CP023,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.83,human_reviewer,12.65,RESOLVED
+EXC_bacda1a2dc,AMBIGUOUS_NOISY|EU|SGD|CP001,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.51,human_reviewer,28.38,PENDING_REMEDIATION
+EXC_1e47377ee8,HOLIDAY_SETTLEMENT_ERROR|IN|EUR|CP009,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.88,ops_analyst,8.0,RESOLVED
+EXC_cc8a2400b8,WRONG_ACCOUNT|US|SGD|CP017,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.79,human_reviewer,10.39,RESOLVED
+EXC_1433e7cdd8,WRONG_ACCOUNT|US|JPY|CP004,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.87,human_reviewer,9.68,RESOLVED
+EXC_835a7e9f02,MISSING_REFERENCE_DATA|US|USD|CP003,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.56,team_lead,10.36,RESOLVED
+EXC_e97048a329,SSI_MISMATCH|JP|JPY|CP013,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.84,human_reviewer,10.31,RESOLVED
+EXC_cbf434128c,AMBIGUOUS_NOISY|GB|USD|CP008,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.52,human_reviewer,12.04,PENDING_REMEDIATION
+EXC_7315a8e039,MISSING_INSTRUCTION|GB|SGD|CP011,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.77,ops_analyst,8.21,RESOLVED
+EXC_3ad878bb7e,SSI_MISMATCH|SG|JPY|CP026,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.93,ops_analyst,11.78,RESOLVED
+EXC_f22f71ef1b,AMBIGUOUS_NOISY|IN|EUR|CP028,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.4,human_reviewer,17.35,RESOLVED
+EXC_3b1c4d63a6,MISSING_INSTRUCTION|IN|JPY|CP011,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.81,ops_analyst,14.24,RESOLVED
+EXC_216211dabd,BOOKING_MISMATCH|IN|JPY|CP016,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.82,human_reviewer,15.18,RESOLVED
+EXC_2a66dbdea9,SSI_MISMATCH|JP|INR|CP029,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.8,human_reviewer,6.74,RESOLVED
+EXC_fbeacdfa14,QUANTITY_MISMATCH|GB|GBP|CP015,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.9,ops_analyst,12.53,RESOLVED
+EXC_7ff47eedf0,PRICE_MISMATCH|SG|INR|CP007,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.84,team_lead,12.79,RESOLVED
+EXC_6bc5ed31be,MISSING_INSTRUCTION|JP|GBP|CP024,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.82,ops_analyst,12.68,RESOLVED
+EXC_8faba11f56,MISSING_INSTRUCTION|IN|USD|CP011,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.79,human_reviewer,3.57,RESOLVED
+EXC_9d5eddb241,MISSING_INSTRUCTION|SG|INR|CP002,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.82,team_lead,12.15,RESOLVED
+EXC_757cc179a0,BOOKING_MISMATCH|GB|EUR|CP029,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.85,human_reviewer,33.31,RESOLVED
+EXC_334e80d51d,COUNTERPARTY_DISCREPANCY|JP|JPY|CP029,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.61,human_reviewer,4.6,RESOLVED
+EXC_5d1763d8a4,MISSING_REFERENCE_DATA|SG|INR|CP009,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,True,0.52,human_reviewer,11.13,RESOLVED
+EXC_216104ec19,MISSING_REFERENCE_DATA|JP|GBP|CP015,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.51,agent,3.66,RESOLVED
+EXC_ce38c117ed,AMBIGUOUS_NOISY|SG|JPY|CP018,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.56,human_reviewer,33.86,RESOLVED
+EXC_eb933b7d6f,AMBIGUOUS_NOISY|GB|EUR|CP030,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.41,human_reviewer,9.18,RESOLVED
+EXC_5a622506da,BOOKING_MISMATCH|US|JPY|CP006,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.78,human_reviewer,8.84,RESOLVED
+EXC_23f6e82048,QUANTITY_MISMATCH|SG|SGD|CP011,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.87,ops_analyst,14.45,RESOLVED
+EXC_1c76fcfe33,SSI_MISMATCH|SG|JPY|CP008,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.79,ops_analyst,1.36,RESOLVED
+EXC_967ecd54ea,SSI_MISMATCH|GB|EUR|CP011,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.76,human_reviewer,9.23,RESOLVED
+EXC_5d677a6905,BOOKING_MISMATCH|IN|USD|CP008,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.82,human_reviewer,11.03,RESOLVED
+EXC_a24bfd9459,AMBIGUOUS_NOISY|JP|INR|CP015,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.39,human_reviewer,11.69,PENDING_REMEDIATION
+EXC_ac3ac3ee20,COUNTERPARTY_DISCREPANCY|IN|SGD|CP028,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.48,agent,11.33,RESOLVED
+EXC_b031a083e7,SSI_MISMATCH|JP|JPY|CP021,SSI_MISMATCH,Validate SSI against active master and resend instruction,True,0.91,human_reviewer,10.67,RESOLVED
+EXC_d3862273c4,MISSING_REFERENCE_DATA|JP|JPY|CP030,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.46,human_reviewer,5.62,RESOLVED
+EXC_5117d51013,WRONG_ACCOUNT|JP|USD|CP027,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.76,human_reviewer,1.88,RESOLVED
+EXC_e53946813a,HOLIDAY_SETTLEMENT_ERROR|GB|GBP|CP006,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,True,0.78,human_reviewer,15.33,RESOLVED
+EXC_476ffba1ea,BOOKING_MISMATCH|IN|USD|CP022,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.81,human_reviewer,7.72,RESOLVED
+EXC_eb6aea450c,HOLIDAY_SETTLEMENT_ERROR|EU|USD|CP012,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.93,ops_analyst,15.54,RESOLVED
+EXC_238a63fd2c,WRONG_ACCOUNT|JP|EUR|CP022,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.79,human_reviewer,11.1,RESOLVED
+EXC_7380e58d96,WRONG_ACCOUNT|JP|EUR|CP018,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.89,human_reviewer,10.99,RESOLVED
+EXC_657f3e5fec,BOOKING_MISMATCH|SG|USD|CP029,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.79,human_reviewer,9.34,RESOLVED
+EXC_bb744be5a6,MISSING_REFERENCE_DATA|SG|INR|CP011,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,True,0.35,human_reviewer,13.79,RESOLVED
+EXC_5bac52d22b,COUNTERPARTY_DISCREPANCY|GB|GBP|CP011,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,True,0.57,human_reviewer,3.29,RESOLVED
+EXC_05779d7acf,QUANTITY_MISMATCH|GB|SGD|CP023,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.77,team_lead,13.84,RESOLVED
+EXC_d6f1f08038,PRICE_MISMATCH|GB|GBP|CP004,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.96,team_lead,3.21,RESOLVED
+EXC_03887a19fd,MISSING_REFERENCE_DATA|GB|USD|CP022,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.45,agent,11.38,RESOLVED
+EXC_6102b9a724,BOOKING_MISMATCH|JP|SGD|CP025,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.91,human_reviewer,11.43,RESOLVED
+EXC_6dcd76ac9f,AMBIGUOUS_NOISY|SG|SGD|CP016,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.36,human_reviewer,23.25,PENDING_REMEDIATION
+EXC_55fd0457a6,WRONG_ACCOUNT|IN|GBP|CP003,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.85,human_reviewer,15.79,RESOLVED
+EXC_0698878ad5,COUNTERPARTY_DISCREPANCY|IN|INR|CP012,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.37,team_lead,4.81,RESOLVED
+EXC_89799720bc,MISSING_REFERENCE_DATA|GB|INR|CP023,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.46,agent,5.94,RESOLVED
+EXC_625a0a3549,HOLIDAY_SETTLEMENT_ERROR|EU|GBP|CP012,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.76,team_lead,15.2,RESOLVED
+EXC_c64ae66b84,WRONG_ACCOUNT|EU|SGD|CP006,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.89,human_reviewer,4.74,RESOLVED
+EXC_7b9e8e9d2f,MISSING_REFERENCE_DATA|JP|SGD|CP020,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.37,team_lead,5.29,RESOLVED
+EXC_a8674bbb26,BOOKING_MISMATCH|US|JPY|CP026,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.96,human_reviewer,25.84,RESOLVED
+EXC_3041f29162,BOOKING_MISMATCH|IN|SGD|CP030,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.8,human_reviewer,26.37,RESOLVED
+EXC_09336d54c2,MISSING_REFERENCE_DATA|IN|USD|CP027,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.38,human_reviewer,6.25,RESOLVED
+EXC_b4d858b480,MISSING_REFERENCE_DATA|EU|USD|CP013,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,True,0.47,human_reviewer,13.59,RESOLVED
+EXC_8443b6d7b3,MISSING_INSTRUCTION|GB|GBP|CP006,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.89,team_lead,5.87,RESOLVED
+EXC_58b1af9f1a,HOLIDAY_SETTLEMENT_ERROR|SG|SGD|CP017,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.9,human_reviewer,4.72,RESOLVED
+EXC_0346c7055b,HOLIDAY_SETTLEMENT_ERROR|IN|EUR|CP024,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,True,0.96,human_reviewer,14.94,RESOLVED
+EXC_7479432ae6,COUNTERPARTY_DISCREPANCY|US|INR|CP014,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.36,agent,1.61,RESOLVED
+EXC_bc622d3634,MISSING_INSTRUCTION|SG|GBP|CP022,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.86,human_reviewer,10.07,RESOLVED
+EXC_fd4a3ddd0a,HOLIDAY_SETTLEMENT_ERROR|EU|EUR|CP021,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.76,team_lead,2.92,RESOLVED
+EXC_02bd5f0086,COUNTERPARTY_DISCREPANCY|SG|GBP|CP018,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.55,team_lead,6.76,RESOLVED
+EXC_7d0b52cba2,COUNTERPARTY_DISCREPANCY|IN|GBP|CP013,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.42,agent,2.99,RESOLVED
+EXC_f7df659c0c,AMBIGUOUS_NOISY|GB|EUR|CP021,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.61,human_reviewer,13.72,PENDING_REMEDIATION
+EXC_4c9404aa61,AMBIGUOUS_NOISY|JP|EUR|CP027,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.57,human_reviewer,26.62,PENDING_REMEDIATION
+EXC_8b19653349,COUNTERPARTY_DISCREPANCY|GB|USD|CP003,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.35,ops_analyst,12.87,RESOLVED
+EXC_49567f6730,QUANTITY_MISMATCH|SG|USD|CP028,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,True,0.93,human_reviewer,7.23,RESOLVED
+EXC_5209a47b48,HOLIDAY_SETTLEMENT_ERROR|GB|USD|CP001,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.94,agent,2.27,RESOLVED
+EXC_1c04481a03,AMBIGUOUS_NOISY|GB|EUR|CP020,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.57,human_reviewer,9.39,RESOLVED
+EXC_6889c2b446,MISSING_INSTRUCTION|EU|EUR|CP024,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.92,team_lead,6.77,RESOLVED
+EXC_d915870bec,BOOKING_MISMATCH|IN|SGD|CP017,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.78,human_reviewer,30.83,RESOLVED
+EXC_80209ca17b,HOLIDAY_SETTLEMENT_ERROR|SG|EUR|CP002,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.92,human_reviewer,3.25,RESOLVED
+EXC_685944aa46,SSI_MISMATCH|SG|EUR|CP016,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.88,ops_analyst,14.14,RESOLVED
+EXC_7b137a97bd,SSI_MISMATCH|IN|INR|CP030,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.76,team_lead,13.05,RESOLVED
+EXC_b57d8ebfcb,MISSING_INSTRUCTION|EU|USD|CP007,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.86,team_lead,9.46,RESOLVED
+EXC_6eedd29ed2,COUNTERPARTY_DISCREPANCY|US|GBP|CP002,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.37,human_reviewer,10.39,RESOLVED
+EXC_50d1badc45,QUANTITY_MISMATCH|GB|SGD|CP029,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.86,agent,15.92,RESOLVED
+EXC_a5d39e2e9b,MISSING_INSTRUCTION|US|EUR|CP026,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.75,team_lead,2.86,RESOLVED
+EXC_06c57c915e,MISSING_REFERENCE_DATA|EU|GBP|CP002,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.38,team_lead,6.64,RESOLVED
+EXC_a978765a26,AMBIGUOUS_NOISY|US|EUR|CP028,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.47,human_reviewer,22.35,RESOLVED
+EXC_453e9d734c,PRICE_MISMATCH|SG|EUR|CP005,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.89,human_reviewer,14.07,RESOLVED
+EXC_6d7d4f03b9,MISSING_REFERENCE_DATA|EU|EUR|CP022,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.62,ops_analyst,15.08,RESOLVED
+EXC_6360e34ebd,MISSING_INSTRUCTION|GB|JPY|CP001,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.77,human_reviewer,4.15,RESOLVED
+EXC_23c5c00f4b,BOOKING_MISMATCH|IN|USD|CP022,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.75,human_reviewer,11.27,RESOLVED
+EXC_75150e796f,SSI_MISMATCH|EU|EUR|CP014,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.9,agent,14.91,RESOLVED
+EXC_53f1b119eb,WRONG_ACCOUNT|JP|INR|CP021,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.84,human_reviewer,5.01,RESOLVED
+EXC_5657d54cf6,COUNTERPARTY_DISCREPANCY|EU|GBP|CP022,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.4,human_reviewer,14.56,RESOLVED
+EXC_99bb3d315b,SSI_MISMATCH|GB|USD|CP014,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.73,team_lead,12.01,RESOLVED
+EXC_005a458f27,COUNTERPARTY_DISCREPANCY|SG|GBP|CP021,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.4,ops_analyst,2.16,RESOLVED
+EXC_92dc9bc725,BOOKING_MISMATCH|GB|JPY|CP030,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.75,human_reviewer,16.28,RESOLVED
+EXC_b0831dd969,PRICE_MISMATCH|JP|INR|CP012,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.95,team_lead,5.01,RESOLVED
+EXC_441b697fe0,QUANTITY_MISMATCH|US|GBP|CP007,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.77,team_lead,11.83,RESOLVED
+EXC_b42c998ba6,BOOKING_MISMATCH|JP|JPY|CP029,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.82,human_reviewer,9.44,RESOLVED
+EXC_995b05cfed,MISSING_REFERENCE_DATA|EU|JPY|CP026,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.38,agent,5.17,RESOLVED
+EXC_4ef45da895,BOOKING_MISMATCH|SG|JPY|CP019,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.78,human_reviewer,6.64,RESOLVED
+EXC_f037958a0e,HOLIDAY_SETTLEMENT_ERROR|SG|INR|CP001,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.85,agent,5.7,RESOLVED
+EXC_6da8a783d5,BOOKING_MISMATCH|EU|SGD|CP013,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.92,human_reviewer,22.13,RESOLVED
+EXC_f9d506fee2,MISSING_INSTRUCTION|SG|USD|CP001,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.88,human_reviewer,8.83,RESOLVED
+EXC_4af4b6ee31,WRONG_ACCOUNT|JP|SGD|CP019,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.77,human_reviewer,11.06,RESOLVED
+EXC_0f9fec55ef,HOLIDAY_SETTLEMENT_ERROR|JP|EUR|CP015,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.77,human_reviewer,5.17,RESOLVED
+EXC_22dc92670b,COUNTERPARTY_DISCREPANCY|EU|INR|CP022,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.49,ops_analyst,1.8,RESOLVED
+EXC_9699dc14e0,SSI_MISMATCH|US|USD|CP012,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.78,ops_analyst,8.98,RESOLVED
+EXC_40137aa377,HOLIDAY_SETTLEMENT_ERROR|IN|SGD|CP008,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.92,human_reviewer,11.32,RESOLVED
+EXC_c9bfd6eae8,HOLIDAY_SETTLEMENT_ERROR|SG|USD|CP011,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.83,agent,1.68,RESOLVED
+EXC_e0c9d1ce33,AMBIGUOUS_NOISY|SG|GBP|CP019,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.61,human_reviewer,31.69,PENDING_REMEDIATION
+EXC_fbfa1e81ee,QUANTITY_MISMATCH|JP|USD|CP012,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.79,ops_analyst,3.86,RESOLVED
+EXC_71c75439a2,COUNTERPARTY_DISCREPANCY|IN|USD|CP027,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.41,agent,13.38,RESOLVED
+EXC_0264e3f61c,MISSING_INSTRUCTION|JP|GBP|CP002,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.78,team_lead,11.18,RESOLVED
+EXC_1d5011b5af,PRICE_MISMATCH|JP|USD|CP014,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.81,team_lead,14.14,RESOLVED
+EXC_1bd068dee5,MISSING_REFERENCE_DATA|GB|INR|CP004,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.5,ops_analyst,9.48,RESOLVED
+EXC_3cc8cee1e9,MISSING_INSTRUCTION|JP|EUR|CP002,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.84,team_lead,9.43,RESOLVED
+EXC_4ef7f24c48,BOOKING_MISMATCH|GB|SGD|CP005,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.73,human_reviewer,21.17,RESOLVED
+EXC_137c330213,SSI_MISMATCH|US|USD|CP013,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.79,team_lead,11.01,RESOLVED
+EXC_0cf35a1780,BOOKING_MISMATCH|SG|GBP|CP012,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.95,human_reviewer,20.04,RESOLVED
+EXC_180ee075f7,HOLIDAY_SETTLEMENT_ERROR|JP|GBP|CP024,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.9,team_lead,5.54,RESOLVED
+EXC_bfde3fcb42,BOOKING_MISMATCH|SG|JPY|CP003,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.74,human_reviewer,9.19,RESOLVED
+EXC_6c8f2a12df,AMBIGUOUS_NOISY|SG|JPY|CP030,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.39,human_reviewer,25.12,PENDING_REMEDIATION
+EXC_2ab7fe5337,PRICE_MISMATCH|EU|JPY|CP007,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.88,team_lead,15.37,RESOLVED
+EXC_1e42b67919,MISSING_INSTRUCTION|GB|INR|CP007,MISSING_SSI,Request missing instructions from counterparty/custodian,True,0.92,human_reviewer,5.35,RESOLVED
+EXC_42efb76ec5,AMBIGUOUS_NOISY|EU|JPY|CP027,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.5,human_reviewer,28.02,PENDING_REMEDIATION
+EXC_3ade0918dc,MISSING_INSTRUCTION|JP|USD|CP008,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.79,human_reviewer,13.75,RESOLVED
+EXC_02f063222f,PRICE_MISMATCH|US|USD|CP001,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.8,human_reviewer,14.77,RESOLVED
+EXC_1b0c9642d2,COUNTERPARTY_DISCREPANCY|US|INR|CP008,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.48,agent,2.84,RESOLVED
+EXC_f3e8720299,QUANTITY_MISMATCH|EU|INR|CP003,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.87,human_reviewer,5.2,RESOLVED
+EXC_69886c85a0,BOOKING_MISMATCH|GB|INR|CP030,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.79,human_reviewer,34.95,RESOLVED
+EXC_60c2a202c5,AMBIGUOUS_NOISY|EU|INR|CP002,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.56,human_reviewer,33.86,PENDING_REMEDIATION
+EXC_958731d1df,COUNTERPARTY_DISCREPANCY|US|INR|CP026,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.46,ops_analyst,10.23,RESOLVED
+EXC_8859b4c21a,PRICE_MISMATCH|SG|GBP|CP009,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.74,ops_analyst,14.46,RESOLVED
+EXC_ef5f4345e2,WRONG_ACCOUNT|JP|EUR|CP003,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.73,human_reviewer,11.72,RESOLVED
+EXC_0c2e327bdf,MISSING_INSTRUCTION|EU|USD|CP009,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.8,ops_analyst,12.82,RESOLVED
+EXC_904732f804,AMBIGUOUS_NOISY|SG|GBP|CP014,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.51,human_reviewer,25.78,RESOLVED
+EXC_3390fed48f,PRICE_MISMATCH|EU|EUR|CP011,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.82,human_reviewer,9.54,RESOLVED
+EXC_9241d390b8,MISSING_INSTRUCTION|IN|EUR|CP030,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.85,agent,14.95,RESOLVED
+EXC_f6510399a1,QUANTITY_MISMATCH|US|JPY|CP005,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.73,ops_analyst,12.08,RESOLVED
+EXC_42541d723d,HOLIDAY_SETTLEMENT_ERROR|JP|SGD|CP015,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.86,agent,15.17,RESOLVED
+EXC_c8d7100ce9,MISSING_INSTRUCTION|EU|JPY|CP008,MISSING_SSI,Request missing instructions from counterparty/custodian,True,0.79,human_reviewer,2.78,RESOLVED
+EXC_4cb7e58c18,WRONG_ACCOUNT|JP|JPY|CP009,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.72,human_reviewer,13.49,RESOLVED
+EXC_8e8005785b,COUNTERPARTY_DISCREPANCY|EU|EUR|CP001,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.44,ops_analyst,8.61,RESOLVED
+EXC_c003ad6398,MISSING_REFERENCE_DATA|SG|SGD|CP015,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.42,human_reviewer,3.27,RESOLVED
+EXC_0fd6272978,MISSING_INSTRUCTION|JP|GBP|CP024,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.84,human_reviewer,10.85,RESOLVED
+EXC_c387a30e8c,SSI_MISMATCH|EU|EUR|CP029,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.8,human_reviewer,6.97,RESOLVED
+EXC_6cc1375486,HOLIDAY_SETTLEMENT_ERROR|JP|JPY|CP025,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.89,agent,6.1,RESOLVED
+EXC_b371931421,QUANTITY_MISMATCH|JP|JPY|CP010,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.96,team_lead,13.57,RESOLVED
+EXC_e512ff64f1,COUNTERPARTY_DISCREPANCY|SG|EUR|CP028,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,True,0.55,human_reviewer,13.19,RESOLVED
+EXC_c8e39cae99,AMBIGUOUS_NOISY|SG|JPY|CP013,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.47,human_reviewer,8.99,RESOLVED
+EXC_c24ad27cf5,HOLIDAY_SETTLEMENT_ERROR|EU|JPY|CP013,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.78,agent,6.55,RESOLVED
+EXC_7373041546,QUANTITY_MISMATCH|EU|GBP|CP021,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.9,agent,13.51,RESOLVED
+EXC_f3b302b59c,MISSING_INSTRUCTION|SG|INR|CP011,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.72,agent,8.8,RESOLVED
+EXC_dcfb66d6c5,COUNTERPARTY_DISCREPANCY|GB|JPY|CP006,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.49,ops_analyst,4.07,RESOLVED
+EXC_9ad64482d3,HOLIDAY_SETTLEMENT_ERROR|IN|GBP|CP017,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.85,agent,5.97,RESOLVED
+EXC_71a452a490,SSI_MISMATCH|JP|INR|CP020,SSI_MISMATCH,Validate SSI against active master and resend instruction,True,0.76,human_reviewer,11.96,RESOLVED
+EXC_4058518116,MISSING_REFERENCE_DATA|GB|GBP|CP009,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.35,agent,2.17,RESOLVED
+EXC_8efd9ee02e,COUNTERPARTY_DISCREPANCY|IN|JPY|CP005,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.48,agent,12.83,RESOLVED
+EXC_bf2fde2cb0,MISSING_REFERENCE_DATA|JP|SGD|CP018,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.6,agent,14.74,RESOLVED
+EXC_270bbe0d1a,WRONG_ACCOUNT|EU|USD|CP020,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.73,human_reviewer,1.43,RESOLVED
+EXC_927c63c650,MISSING_REFERENCE_DATA|SG|EUR|CP029,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.51,agent,15.16,RESOLVED
+EXC_0830de3d1b,QUANTITY_MISMATCH|JP|JPY|CP022,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,True,0.83,human_reviewer,13.54,RESOLVED
+EXC_25f96ff651,PRICE_MISMATCH|IN|JPY|CP003,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.76,ops_analyst,3.11,RESOLVED
+EXC_d1a14fb818,MISSING_REFERENCE_DATA|GB|EUR|CP014,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.47,ops_analyst,10.69,RESOLVED
+EXC_ffaab8f1ed,HOLIDAY_SETTLEMENT_ERROR|EU|SGD|CP007,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.81,agent,9.83,RESOLVED
+EXC_97becde9d8,PRICE_MISMATCH|SG|USD|CP011,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.83,ops_analyst,4.65,RESOLVED
+EXC_9d643cc6c3,PRICE_MISMATCH|EU|JPY|CP020,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.91,agent,1.81,RESOLVED
+EXC_1a9e30cd5b,WRONG_ACCOUNT|GB|GBP|CP010,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.72,human_reviewer,3.39,RESOLVED
+EXC_f1621f0afc,BOOKING_MISMATCH|JP|INR|CP004,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.8,human_reviewer,26.1,RESOLVED
+EXC_fc741f02e6,QUANTITY_MISMATCH|US|EUR|CP019,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.79,team_lead,6.8,RESOLVED
+EXC_e92d195be1,MISSING_REFERENCE_DATA|EU|JPY|CP002,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.42,team_lead,10.51,RESOLVED
+EXC_983cea8a26,PRICE_MISMATCH|EU|JPY|CP017,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.83,team_lead,1.6,RESOLVED
+EXC_0f7a2d1e9f,QUANTITY_MISMATCH|EU|USD|CP015,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.74,human_reviewer,2.42,RESOLVED
+EXC_578f798d26,SSI_MISMATCH|JP|JPY|CP021,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.87,team_lead,5.53,RESOLVED
+EXC_4f09eaf724,BOOKING_MISMATCH|GB|SGD|CP001,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.9,human_reviewer,19.11,RESOLVED
+EXC_3251050b97,PRICE_MISMATCH|SG|EUR|CP024,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.77,team_lead,10.17,RESOLVED
+EXC_a5f1f28925,MISSING_INSTRUCTION|JP|SGD|CP019,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.8,ops_analyst,4.11,RESOLVED
+EXC_561cc968f7,HOLIDAY_SETTLEMENT_ERROR|EU|GBP|CP010,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,True,0.77,human_reviewer,15.88,RESOLVED
+EXC_fbfa5fbee8,QUANTITY_MISMATCH|EU|EUR|CP019,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.79,human_reviewer,14.87,RESOLVED
+EXC_5e9c70d952,COUNTERPARTY_DISCREPANCY|GB|JPY|CP030,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.39,agent,10.38,RESOLVED
+EXC_8ed34e7038,AMBIGUOUS_NOISY|US|SGD|CP012,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.61,human_reviewer,21.01,PENDING_REMEDIATION
+EXC_4a91f2513c,SSI_MISMATCH|IN|GBP|CP026,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.92,team_lead,1.9,RESOLVED
+EXC_11e4e97f72,COUNTERPARTY_DISCREPANCY|SG|USD|CP027,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.54,team_lead,7.87,RESOLVED
+EXC_a4cfe937e5,WRONG_ACCOUNT|GB|GBP|CP025,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.79,human_reviewer,11.74,RESOLVED
+EXC_fa6b96a8a0,HOLIDAY_SETTLEMENT_ERROR|SG|GBP|CP019,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.84,team_lead,14.05,RESOLVED
+EXC_0a6a9ae5ec,WRONG_ACCOUNT|IN|EUR|CP016,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.77,human_reviewer,3.25,RESOLVED
+EXC_d676333b77,MISSING_REFERENCE_DATA|SG|USD|CP020,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.37,human_reviewer,9.5,RESOLVED
+EXC_bb8a146dcb,PRICE_MISMATCH|EU|SGD|CP008,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.86,team_lead,9.72,RESOLVED
+EXC_04dd456250,AMBIGUOUS_NOISY|IN|USD|CP004,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.48,human_reviewer,11.3,RESOLVED
+EXC_af35bd3003,PRICE_MISMATCH|EU|SGD|CP017,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,True,0.93,human_reviewer,6.14,RESOLVED
+EXC_06ee5fb391,PRICE_MISMATCH|IN|EUR|CP022,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.92,human_reviewer,10.15,RESOLVED
+EXC_012be39024,AMBIGUOUS_NOISY|IN|JPY|CP011,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.56,human_reviewer,6.58,PENDING_REMEDIATION
+EXC_66b5496cfb,QUANTITY_MISMATCH|SG|SGD|CP007,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.86,agent,15.28,RESOLVED
+EXC_77540f2653,WRONG_ACCOUNT|SG|JPY|CP025,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.8,human_reviewer,12.63,RESOLVED
+EXC_7b27d47ec4,HOLIDAY_SETTLEMENT_ERROR|GB|EUR|CP014,MARKET_HOLIDAY_MISREAD,Roll intended settlement date to next open market day,False,0.83,ops_analyst,7.91,RESOLVED
+EXC_490dee7d9e,PRICE_MISMATCH|SG|SGD|CP007,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.84,agent,9.62,RESOLVED
+EXC_10c45cee63,BOOKING_MISMATCH|US|INR|CP024,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.85,human_reviewer,26.78,RESOLVED
+EXC_bca7fb17c1,PRICE_MISMATCH|JP|USD|CP027,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.76,agent,5.63,RESOLVED
+EXC_49e2725c95,MISSING_INSTRUCTION|IN|INR|CP001,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.95,human_reviewer,1.38,RESOLVED
+EXC_64baad938c,BOOKING_MISMATCH|US|JPY|CP013,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.96,human_reviewer,29.99,RESOLVED
+EXC_13bb45ae42,COUNTERPARTY_DISCREPANCY|JP|GBP|CP012,COUNTERPARTY_REFERENCE_MISMATCH,Confirm legal entity and refresh counterparty reference data,False,0.59,human_reviewer,1.68,RESOLVED
+EXC_2af24004fe,WRONG_ACCOUNT|IN|USD|CP006,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.9,human_reviewer,13.15,RESOLVED
+EXC_f79369a5c6,QUANTITY_MISMATCH|EU|USD|CP006,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.72,agent,14.46,RESOLVED
+EXC_ff668f9477,MISSING_INSTRUCTION|US|USD|CP014,MISSING_SSI,Request missing instructions from counterparty/custodian,False,0.9,human_reviewer,13.78,RESOLVED
+EXC_5f8434f412,WRONG_ACCOUNT|GB|INR|CP005,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.9,human_reviewer,2.98,RESOLVED
+EXC_1b2f0c9956,BOOKING_MISMATCH|EU|SGD|CP014,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.93,human_reviewer,11.63,RESOLVED
+EXC_681fb6b549,WRONG_ACCOUNT|IN|JPY|CP028,WRONG_ACCOUNT,Correct settlement account and obtain approval before rebook,True,0.88,human_reviewer,6.14,RESOLVED
+EXC_a6d2864a18,QUANTITY_MISMATCH|EU|USD|CP017,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.88,human_reviewer,12.64,RESOLVED
+EXC_1ee3ef6eef,SSI_MISMATCH|SG|GBP|CP024,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.79,team_lead,15.39,RESOLVED
+EXC_6b22257ae6,MISSING_REFERENCE_DATA|JP|INR|CP010,REFERENCE_DATA_GAP,Backfill missing reference data before settlement processing,False,0.57,human_reviewer,15.26,RESOLVED
+EXC_74b3ee57fd,BOOKING_MISMATCH|GB|SGD|CP013,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.85,human_reviewer,29.15,RESOLVED
+EXC_ab319f20bb,BOOKING_MISMATCH|JP|EUR|CP020,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.93,human_reviewer,26.74,RESOLVED
+EXC_15bfdab67a,AMBIGUOUS_NOISY|JP|GBP|CP026,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.38,human_reviewer,30.18,PENDING_REMEDIATION
+EXC_ef58bbfdc1,SSI_MISMATCH|JP|EUR|CP019,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.88,team_lead,14.56,RESOLVED
+EXC_cf58ee37e0,PRICE_MISMATCH|JP|SGD|CP027,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.89,ops_analyst,13.74,RESOLVED
+EXC_4e10491971,SSI_MISMATCH|SG|GBP|CP012,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.85,human_reviewer,13.08,RESOLVED
+EXC_3c1e15a601,QUANTITY_MISMATCH|EU|USD|CP011,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.89,human_reviewer,9.41,RESOLVED
+EXC_cdbd2df628,AMBIGUOUS_NOISY|IN|SGD|CP013,AMBIGUOUS_EVIDENCE,Escalate to human review due to conflicting or weak evidence,True,0.48,human_reviewer,31.0,PENDING_REMEDIATION
+EXC_f312110509,PRICE_MISMATCH|GB|JPY|CP008,PRICE_BREAK,Reconfirm price with trading desk and amend booking if required,False,0.78,human_reviewer,6.55,RESOLVED
+EXC_c4d5e6a211,SSI_MISMATCH|IN|GBP|CP011,SSI_MISMATCH,Validate SSI against active master and resend instruction,False,0.83,agent,9.87,RESOLVED
+EXC_739584d83c,QUANTITY_MISMATCH|US|INR|CP006,QUANTITY_BREAK,Investigate allocation quantity and amend booking if approved,False,0.77,ops_analyst,7.78,RESOLVED
+EXC_c74ad12b70,BOOKING_MISMATCH|GB|INR|CP011,BOOKING_MISMATCH,Reconcile booking details with front office and repair trade,True,0.96,human_reviewer,29.21,RESOLVED
