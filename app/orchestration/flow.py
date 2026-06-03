@@ -33,6 +33,7 @@ class TradeExceptionResolutionFlow(Flow[CaseResolutionFlowState]):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        # Initialize agents
         self.intake_agent = IntakeAgentService()
         self.retrieval_agent = RetrievalAgentService()
         self.rag_agent = PolicyRAGAgentService()
@@ -41,6 +42,10 @@ class TradeExceptionResolutionFlow(Flow[CaseResolutionFlowState]):
         self.hitl_agent = HITLAgentService()
         self.audit_agent = AuditAgentService()
         self.persistence = WorkflowPersistenceService()
+        
+        # Initialize flow state if not already set
+        if not hasattr(self, 'state') or self.state is None:
+            self.state = CaseResolutionFlowState()
 
     # ---------- shared helpers ----------
 
@@ -308,53 +313,82 @@ class TradeExceptionResolutionFlowRunner:
         self.persistence = WorkflowPersistenceService()
 
     def run(self, payload: Dict[str, Any]) -> FinalCaseSummary:
+        """
+        Execute the full workflow end-to-end for a new case.
+        
+        Returns the final case summary after all stages complete or HITL is triggered.
+        """
         flow = TradeExceptionResolutionFlow()
         flow.state.request_payload = payload
         flow.state.workflow_status = WorkflowStatus.NOT_STARTED
+        flow.state.started_at_utc = utc_now()
         flow._persist_snapshot()
-        result = flow.kickoff()
-        if isinstance(result, FinalCaseSummary):
-            return result
-        return flow.state.final_summary
+        
+        try:
+            result = flow.kickoff()
+            # kickoff() returns the result of the final listened method (FinalCaseSummary)
+            if isinstance(result, FinalCaseSummary):
+                return result
+            # Fallback to state's final_summary if kickoff returns something else
+            if flow.state.final_summary:
+                return flow.state.final_summary
+            # If neither exists, this is an error state
+            raise RuntimeError("Flow execution completed but no final summary was produced")
+        except Exception as exc:
+            flow.state.errors.append(f"Flow execution failed: {str(exc)}")
+            flow.state.workflow_status = WorkflowStatus.FAILED
+            flow._persist_snapshot()
+            raise
 
     def resume_after_human_review(
         self,
         case_id: str,
         request: HumanApprovalRequest,
     ) -> FinalCaseSummary:
+        """
+        Resume a workflow after human reviewer provides approval/rejection decision.
+        
+        Updates the approval decision, finalizes audit, and returns final summary.
+        """
         state = self.persistence.apply_human_decision(case_id=case_id, request=request)
         if state is None:
             raise ValueError(f"No persisted flow state found for case_id={case_id}")
 
-        # if rejected, keep blocked and finalize updated audit/summary
+        # Update workflow status and approval decision based on reviewer decision
         if request.approved:
             state.workflow_status = WorkflowStatus.COMPLETED
-        else:
-            state.workflow_status = WorkflowStatus.BLOCKED
-
-        if state.approval_decision is not None:
-            if request.approved:
+            if state.approval_decision is not None:
                 state.approval_decision.status = "AUTO_APPROVED"
                 state.approval_decision.requires_human_approval = False
                 state.approval_decision.reasons = [
                     *state.approval_decision.reasons,
                     f"Human reviewer {request.reviewer_name} approved case",
                 ]
-            else:
+        else:
+            state.workflow_status = WorkflowStatus.BLOCKED
+            if state.approval_decision is not None:
                 state.approval_decision.status = "BLOCKED"
                 state.approval_decision.reasons = [
                     *state.approval_decision.reasons,
                     f"Human reviewer {request.reviewer_name} rejected case",
                 ]
 
+        # Create a flow instance to finalize audit with updated state
         flow = TradeExceptionResolutionFlow()
         flow.state = state
         flow.state.current_stage = FlowStage.PERSIST_AUDIT_TRAIL
         flow.state.updated_at_utc = utc_now()
-        flow._finalize_audit_and_persist()
-        flow.state.completed_at_utc = utc_now()
-        flow.state.current_stage = FlowStage.RETURN_FINAL_SUMMARY
-        flow.state.final_summary = flow._build_final_summary()
-        flow._persist_snapshot()
-
-        return flow.state.final_summary
+        
+        try:
+            flow._finalize_audit_and_persist()
+            flow.state.completed_at_utc = utc_now()
+            flow.state.current_stage = FlowStage.RETURN_FINAL_SUMMARY
+            flow.state.final_summary = flow._build_final_summary()
+            flow._persist_snapshot()
+            
+            return flow.state.final_summary
+        except Exception as exc:
+            flow.state.errors.append(f"HITL resume failed: {str(exc)}")
+            flow.state.workflow_status = WorkflowStatus.FAILED
+            flow._persist_snapshot()
+            raise

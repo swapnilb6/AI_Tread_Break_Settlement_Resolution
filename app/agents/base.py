@@ -28,15 +28,15 @@ class StructuredOutputRunner(Generic[T]):
         user_payload: dict,
         output_model: Type[T],
     ) -> T:
-        response = self.client.responses.parse(
+        response = self.client.beta.chat.completions.parse(
             model=self.model_name,
-            input=[
+            messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": json.dumps(user_payload, default=str)},
             ],
-            text_format=output_model,
+            response_format=output_model,
         )
-        return response.output_parsed
+        return response.choices[0].message.parsed
 
 
 def build_crewai_agent(
