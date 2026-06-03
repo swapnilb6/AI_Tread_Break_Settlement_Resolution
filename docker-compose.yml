@@ -1,22 +1,52 @@
-version: "3.9"
-
-services:
-  postgres:
+services:services  postgres:
     image: postgres:16
     container_name: cm_postgres
     environment:
-      POSTGRES_DB: tradebreaks
-      POSTGRES_USER: appuser
-      POSTGRES_PASSWORD: apppassword
+      POSTGRES_DB: ${POSTGRES_DB:-tradebreaks}
+      POSTGRES_USER: ${POSTGRES_USER:-appuser}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-apppassword}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U appuser -d tradebreaks"]
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 10
+      start_period: 20s
+
+  bootstrap:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cm_bootstrap
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      APP_ENV: ${APP_ENV:-docker}
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:-tradebreaks}
+      POSTGRES_USER: ${POSTGRES_USER:-appuser}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-apppassword}
+      CHROMA_PATH: /app/storage/chroma
+      CHROMA_COLLECTION: ${CHROMA_COLLECTION:-policy_knowledge_base}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      OPENAI_EMBEDDING_MODEL: ${OPENAI_EMBEDDING_MODEL:-text-embedding-3-small}
+    volumes:
+      - ./:/app
+      - chroma_data:/app/storage/chroma
+    command: >
+      sh -c "
+      python -c 'from app.db.init_db import init_db; init_db()' &&
+      python app/synthetic_data/load_to_postgres.py &&
+      python app/rag/ingest.py
+      python app/bootstrap.py --data-dir /app/data/synthetic --policy-dir /app/data/policies
+      "
+    restart: "no"
 
   api:
     build:
@@ -25,22 +55,20 @@ services:
     container_name: cm_api
     command: uvicorn app.api.main:app --host 0.0.0.0 --port 8000 --reload
     environment:
-      APP_ENV: dev
-      APP_NAME: Capital Markets Exception Resolution Agent
+      APP_ENV: ${APP_ENV:-docker}
+      APP_NAME: ${APP_NAME:-Capital Markets Exception Resolution Agent}
       APP_HOST: 0.0.0.0
       APP_PORT: 8000
-
       POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432
-      POSTGRES_DB: tradebreaks
-      POSTGRES_USER: appuser
-      POSTGRES_PASSWORD: apppassword
-
+      POSTGRES_DB: ${POSTGRES_DB:-tradebreaks}
+      POSTGRES_USER: ${POSTGRES_USER:-appuser}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-apppassword}
       CHROMA_PATH: /app/storage/chroma
-      CHROMA_COLLECTION: policy_knowledge_base
-
-      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      CHROMA_COLLECTION: ${CHROMA_COLLECTION:-policy_knowledge_base}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
       OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      OPENAI_EMBEDDING_MODEL: ${OPENAI_EMBEDDING_MODEL:-text-embedding-3-small}
       API_BASE_URL: http://api:8000
     volumes:
       - ./:/app
@@ -50,6 +78,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      bootstrap:
+        condition: service_completed_successfully
 
   ui:
     build:
@@ -58,15 +88,19 @@ services:
     container_name: cm_ui
     command: streamlit run app/ui/streamlit_app.py --server.address=0.0.0.0 --server.port=8501
     environment:
-      APP_ENV: dev
+      APP_ENV: ${APP_ENV:-docker}
       API_BASE_URL: http://api:8000
+      CHROMA_PATH: /app/storage/chroma
     volumes:
       - ./:/app
+      - chroma_data:/app/storage/chroma
     ports:
       - "8501:8501"
     depends_on:
-      - api
+      api:
+        condition: service_started
 
 volumes:
   postgres_data:
   chroma_data:
+
