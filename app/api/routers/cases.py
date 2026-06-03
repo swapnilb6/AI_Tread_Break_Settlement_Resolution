@@ -1,33 +1,31 @@
-import uuid
-from fastapi import APIRouter
-from pydantic import BaseModel
+# app/api/routers/cases.py
+from __future__ import annotations
 
-from app.schemas.case import IntakeResult, CaseContext
-from app.schemas.common import ExceptionType, CaseStatus
+from typing import Any, Dict
 
-router = APIRouter()
+from fastapi import APIRouter, HTTPException
+
+from app.orchestration.flow import TradeExceptionResolutionFlowRunner
+from app.schemas.flow_state import FinalCaseSummary, HumanApprovalRequest
+
+router = APIRouter(prefix="/cases", tags=["cases"])
+
+flow_runner = TradeExceptionResolutionFlowRunner()
 
 
-class IntakeRequest(BaseModel):
-    raw_text: str
-    source_system: str | None = None
+@router.post("/workflow/run", response_model=FinalCaseSummary)
+def run_case_workflow(payload: Dict[str, Any]) -> FinalCaseSummary:
+    try:
+        return flow_runner.run(payload)
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"Workflow execution failed: {exc}")
 
 
-@router.post("/intake", response_model=CaseContext)
-def intake_case(request: IntakeRequest):
-    case_id = str(uuid.uuid4())
-
-    intake = IntakeResult(
-        case_id=case_id,
-        exception_type=ExceptionType.UNKNOWN,
-        summary=request.raw_text[:250],
-        extracted_entities={"source_system": request.source_system},
-        missing_fields=[],
-        confidence=0.45,
-    )
-
-    return CaseContext(
-        case_id=case_id,
-        status=CaseStatus.NEW,
-        intake=intake,
-    )
+@router.post("/{case_id}/approval", response_model=FinalCaseSummary)
+def submit_human_approval(case_id: str, request: HumanApprovalRequest) -> FinalCaseSummary:
+    try:
+        return flow_runner.resume_after_human_review(case_id=case_id, request=request)
+    except ValueError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"Approval processing failed: {exc}")

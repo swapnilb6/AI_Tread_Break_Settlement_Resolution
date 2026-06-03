@@ -1,3 +1,11 @@
+# app/orchestration/flow.py
+from __future__ import annotations
+
+from datetime import datetime, timezone
+from typing import Any, Dict, Optional
+
+from crewai.flow.flow import Flow, listen, router, start
+
 from app.agents.audit_agent import AuditAgentService
 from app.agents.hitl_agent import HITLAgentService
 from app.agents.intake_agent import IntakeAgentService
@@ -5,103 +13,348 @@ from app.agents.policy_rag_agent import PolicyRAGAgentService
 from app.agents.recommendation_agent import RecommendationAgentService
 from app.agents.retrieval_agent import RetrievalAgentService
 from app.agents.root_cause_agent import RootCauseAgentService
-from app.schemas.agent_outputs import (
-    AuditRecord,
-    CaseContext,
-    IntakeResult,
-    RAGContext,
-    RootCauseAssessment,
-    ActionRecommendation,
-    ApprovalDecision,
+from app.schemas.flow_state import (
+    CaseResolutionFlowState,
+    FinalCaseSummary,
+    FlowEvent,
+    FlowStage,
+    HumanApprovalRequest,
+    ReviewerDecision,
+    WorkflowStatus,
 )
+from app.services.workflow_persistence_service import WorkflowPersistenceService
 
 
-class ExceptionResolutionFlow:
+def utc_now() -> datetime:
+    return datetime.now(timezone.utc)
+
+
+class TradeExceptionResolutionFlow(Flow[CaseResolutionFlowState]):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.intake_agent = IntakeAgentService()
+        self.retrieval_agent = RetrievalAgentService()
+        self.rag_agent = PolicyRAGAgentService()
+        self.root_cause_agent = RootCauseAgentService()
+        self.recommendation_agent = RecommendationAgentService()
+        self.hitl_agent = HITLAgentService()
+        self.audit_agent = AuditAgentService()
+        self.persistence = WorkflowPersistenceService()
+
+    # ---------- shared helpers ----------
+
+    def _touch(self) -> None:
+        self.state.updated_at_utc = utc_now()
+
+    def _set_stage(self, stage: FlowStage, workflow_status: Optional[WorkflowStatus] = None) -> None:
+        self.state.current_stage = stage
+        if workflow_status is not None:
+            self.state.workflow_status = workflow_status
+        self._touch()
+
+    def _event(self, stage: FlowStage, message: str, **details: Any) -> None:
+        self.state.event_log.append(
+            FlowEvent(stage=stage, message=message, details=details)
+        )
+        self._touch()
+
+    def _persist_snapshot(self) -> None:
+        persisted_case_ref = self.persistence.persist_flow_snapshot(self.state)
+        if persisted_case_ref:
+            self.state.persisted_case_ref = persisted_case_ref
+        self._touch()
+
+    def _build_final_summary(self) -> FinalCaseSummary:
+        approval = self.state.approval_decision
+        intake = self.state.intake_result
+        root_cause = self.state.root_cause
+        recommendation = self.state.recommendation
+
+        return FinalCaseSummary(
+            case_id=self.state.case_id or "",
+            flow_id=self.state.flow_id,
+            workflow_status=self.state.workflow_status,
+            current_stage=self.state.current_stage,
+            approval_status=approval.status if approval else "UNKNOWN",
+            requires_human_approval=approval.requires_human_approval if approval else False,
+            reviewer_decision=self.state.reviewer_decision,
+            route_to=approval.route_to if approval else "NONE",
+            exception_type=intake.exception_type if intake else None,
+            risk=intake.risk if intake else None,
+            root_cause=root_cause.likely_root_cause if root_cause else None,
+            root_cause_confidence=root_cause.confidence if root_cause else None,
+            recommended_action=recommendation.action_title if recommendation else None,
+            recommendation_confidence=recommendation.confidence if recommendation else None,
+            pending_reasons=approval.reasons if approval else [],
+            warnings=recommendation.warnings if recommendation else [],
+            audit_record_id=self.state.persisted_audit_ref,
+            started_at_utc=self.state.started_at_utc,
+            completed_at_utc=self.state.completed_at_utc,
+        )
+
+    def _finalize_audit_and_persist(self) -> None:
+        if not all(
+            [
+                self.state.intake_result,
+                self.state.case_context,
+                self.state.rag_context,
+                self.state.root_cause,
+                self.state.recommendation,
+                self.state.approval_decision,
+            ]
+        ):
+            raise ValueError("Cannot finalize audit record because required state is incomplete.")
+
+        self.state.audit_record = self.audit_agent.run(
+            intake=self.state.intake_result,
+            case_context=self.state.case_context,
+            rag_context=self.state.rag_context,
+            root_cause=self.state.root_cause,
+            recommendation=self.state.recommendation,
+            approval=self.state.approval_decision,
+        )
+        self.state.persisted_audit_ref = self.persistence.persist_audit_record(self.state.audit_record)
+        self._touch()
+
+    # ---------- flow stages ----------
+
+    @start()
+    def intake(self):
+        self._set_stage(FlowStage.INTAKE, WorkflowStatus.RUNNING)
+        self._event(FlowStage.INTAKE, "Starting intake stage")
+
+        intake_result = self.intake_agent.run(self.state.request_payload)
+        self.state.intake_result = intake_result
+        self.state.case_id = intake_result.case_id
+
+        self._event(
+            FlowStage.INTAKE,
+            "Intake completed",
+            case_id=intake_result.case_id,
+            exception_type=intake_result.exception_type,
+            risk=intake_result.risk,
+        )
+        self._persist_snapshot()
+        return intake_result
+
+    @listen(intake)
+    def retrieve_case_data(self, intake_result):
+        self._set_stage(FlowStage.RETRIEVE_CASE_DATA, WorkflowStatus.RUNNING)
+        self._event(FlowStage.RETRIEVE_CASE_DATA, "Starting reference data retrieval")
+
+        case_context = self.retrieval_agent.run(intake_result)
+        self.state.case_context = case_context
+
+        self._event(
+            FlowStage.RETRIEVE_CASE_DATA,
+            "Reference data retrieval completed",
+            retrieval_strength=case_context.retrieval_strength,
+            data_conflicts=case_context.data_conflicts,
+        )
+        self._persist_snapshot()
+        return case_context
+
+    @listen(retrieve_case_data)
+    def retrieve_policy_context(self, case_context):
+        self._set_stage(FlowStage.RETRIEVE_POLICY_CONTEXT, WorkflowStatus.RUNNING)
+        self._event(FlowStage.RETRIEVE_POLICY_CONTEXT, "Starting policy retrieval")
+
+        rag_context = self.rag_agent.run(
+            intake=self.state.intake_result,
+            case_context=case_context,
+        )
+        self.state.rag_context = rag_context
+
+        self._event(
+            FlowStage.RETRIEVE_POLICY_CONTEXT,
+            "Policy retrieval completed",
+            retrieval_strength=rag_context.retrieval_strength,
+            contradictions=rag_context.policy_contradictions,
+        )
+        self._persist_snapshot()
+        return rag_context
+
+    @listen(retrieve_policy_context)
+    def infer_root_cause(self, rag_context):
+        self._set_stage(FlowStage.INFER_ROOT_CAUSE, WorkflowStatus.RUNNING)
+        self._event(FlowStage.INFER_ROOT_CAUSE, "Starting root cause assessment")
+
+        root_cause = self.root_cause_agent.run(
+            intake=self.state.intake_result,
+            case_context=self.state.case_context,
+            rag_context=rag_context,
+        )
+        self.state.root_cause = root_cause
+
+        self._event(
+            FlowStage.INFER_ROOT_CAUSE,
+            "Root cause assessment completed",
+            likely_root_cause=root_cause.likely_root_cause,
+            confidence=root_cause.confidence,
+        )
+        self._persist_snapshot()
+        return root_cause
+
+    @listen(infer_root_cause)
+    def recommend_action(self, root_cause):
+        self._set_stage(FlowStage.RECOMMEND_ACTION, WorkflowStatus.RUNNING)
+        self._event(FlowStage.RECOMMEND_ACTION, "Starting action recommendation")
+
+        recommendation = self.recommendation_agent.run(
+            intake=self.state.intake_result,
+            case_context=self.state.case_context,
+            rag_context=self.state.rag_context,
+            root_cause=root_cause,
+        )
+        self.state.recommendation = recommendation
+
+        self._event(
+            FlowStage.RECOMMEND_ACTION,
+            "Action recommendation completed",
+            action_code=recommendation.action_code,
+            confidence=recommendation.confidence,
+        )
+        self._persist_snapshot()
+        return recommendation
+
+    @listen(recommend_action)
+    def check_approval_rules(self, recommendation):
+        self._set_stage(FlowStage.CHECK_APPROVAL_RULES, WorkflowStatus.RUNNING)
+        self._event(FlowStage.CHECK_APPROVAL_RULES, "Evaluating deterministic approval policy")
+
+        approval_decision = self.hitl_agent.run(
+            intake=self.state.intake_result,
+            case_context=self.state.case_context,
+            rag_context=self.state.rag_context,
+            root_cause=self.state.root_cause,
+            recommendation=recommendation,
+        )
+        self.state.approval_decision = approval_decision
+
+        self._event(
+            FlowStage.CHECK_APPROVAL_RULES,
+            "Approval policy evaluation completed",
+            status=approval_decision.status,
+            requires_human_approval=approval_decision.requires_human_approval,
+            route_to=approval_decision.route_to,
+        )
+
+        self.state.persisted_approval_ref = self.persistence.persist_approval_request(
+            self.state,
+            approval_decision,
+        )
+        self._persist_snapshot()
+        return approval_decision
+
+    @router(check_approval_rules)
+    def approval_router(self, approval_decision):
+        if approval_decision.requires_human_approval:
+            return "request_human_approval"
+        return "finalize_draft"
+
+    @listen("request_human_approval")
+    def request_human_approval(self):
+        self._set_stage(FlowStage.REQUEST_HUMAN_APPROVAL, WorkflowStatus.PENDING_HUMAN_APPROVAL)
+        self.state.reviewer_decision = ReviewerDecision.PENDING
+
+        self._event(
+            FlowStage.REQUEST_HUMAN_APPROVAL,
+            "Case routed for human approval",
+            reasons=self.state.approval_decision.reasons if self.state.approval_decision else [],
+            route_to=self.state.approval_decision.route_to if self.state.approval_decision else "OPS_REVIEWER",
+        )
+
+        self._set_stage(FlowStage.PERSIST_AUDIT_TRAIL, WorkflowStatus.PENDING_HUMAN_APPROVAL)
+        self._finalize_audit_and_persist()
+
+        self.state.final_summary = self._build_final_summary()
+        self._set_stage(FlowStage.RETURN_FINAL_SUMMARY, WorkflowStatus.PENDING_HUMAN_APPROVAL)
+        self._persist_snapshot()
+        return self.state.final_summary
+
+    @listen("finalize_draft")
+    def finalize_draft(self):
+        self._set_stage(FlowStage.FINALIZE_DRAFT, WorkflowStatus.RUNNING)
+        self._event(FlowStage.FINALIZE_DRAFT, "Auto-approved path selected, finalizing case draft")
+
+        if self.state.approval_decision and self.state.approval_decision.status == "BLOCKED":
+            self.state.workflow_status = WorkflowStatus.BLOCKED
+        else:
+            self.state.workflow_status = WorkflowStatus.COMPLETED
+
+        self._set_stage(FlowStage.PERSIST_AUDIT_TRAIL, self.state.workflow_status)
+        self._finalize_audit_and_persist()
+
+        self.state.completed_at_utc = utc_now()
+        self.state.final_summary = self._build_final_summary()
+
+        self._set_stage(FlowStage.RETURN_FINAL_SUMMARY, self.state.workflow_status)
+        self._event(
+            FlowStage.RETURN_FINAL_SUMMARY,
+            "Workflow completed",
+            workflow_status=self.state.workflow_status.value,
+        )
+        self._persist_snapshot()
+        return self.state.final_summary
+
+
+class TradeExceptionResolutionFlowRunner:
     """
-    Phase 5 orchestration flow for Capital Markets Trade Break & Settlement Exception Resolution.
-    
-    Orchestrates 7 agents in sequence:
-    1. Intake Agent - Classifies exception and extracts initial data
-    2. Retrieval Agent - Fetches reference data
-    3. Policy/RAG Agent - Retrieves policy evidence
-    4. Root Cause Agent - Assesses likely root cause
-    5. Recommendation Agent - Recommends next action
-    6. HITL Agent - Applies deterministic approval policy
-    7. Audit Agent - Assembles final audit record
-    
-    Each agent is called standalone with its run() method.
-    All outputs are validated against strict Pydantic schemas.
+    Public service wrapper used by API/UI.
     """
 
     def __init__(self):
-        self.intake_service = IntakeAgentService()
-        self.retrieval_service = RetrievalAgentService()
-        self.rag_service = PolicyRAGAgentService()
-        self.root_cause_service = RootCauseAgentService()
-        self.recommendation_service = RecommendationAgentService()
-        self.hitl_service = HITLAgentService()
-        self.audit_service = AuditAgentService()
+        self.persistence = WorkflowPersistenceService()
 
-    def run(self, intake_payload: dict) -> AuditRecord:
-        """
-        Execute the full exception resolution workflow.
-        
-        Args:
-            intake_payload: Dictionary with exception data (trade_id, summary, etc.)
-            
-        Returns:
-            AuditRecord with complete case analysis and decision
-        """
-        # Step 1: Intake - Classify exception and extract identifiers
-        intake: IntakeResult = self.intake_service.run(intake_payload)
-        
-        # Step 2: Retrieval - Fetch all reference data
-        case_context: CaseContext = self.retrieval_service.run(intake)
-        
-        # Step 3: RAG - Retrieve policy evidence
-        rag_context: RAGContext = self.rag_service.run(intake, case_context)
-        
-        # Step 4: Root Cause - Assess likely operational root cause
-        root_cause: RootCauseAssessment = self.root_cause_service.run(
-            intake, case_context, rag_context
-        )
-        
-        # Step 5: Recommendation - Recommend next action
-        recommendation: ActionRecommendation = self.recommendation_service.run(
-            intake, case_context, rag_context, root_cause
-        )
-        
-        # Step 6: HITL - Apply approval policy and determine routing
-        approval: ApprovalDecision = self.hitl_service.run(
-            intake, case_context, rag_context, root_cause, recommendation
-        )
-        
-        # Step 7: Audit - Assemble final audit record
-        audit_record: AuditRecord = self.audit_service.run(
-            intake, case_context, rag_context, root_cause, recommendation, approval
-        )
-        
-        return audit_record
+    def run(self, payload: Dict[str, Any]) -> FinalCaseSummary:
+        flow = TradeExceptionResolutionFlow()
+        flow.state.request_payload = payload
+        flow.state.workflow_status = WorkflowStatus.NOT_STARTED
+        flow._persist_snapshot()
+        result = flow.kickoff()
+        if isinstance(result, FinalCaseSummary):
+            return result
+        return flow.state.final_summary
 
-    def run_steps_independently(self, intake_payload: dict) -> dict:
-        """
-        Run each step independently and return all results.
-        Useful for debugging and testing individual agents.
-        """
-        intake = self.intake_service.run(intake_payload)
-        case_context = self.retrieval_service.run(intake)
-        rag_context = self.rag_service.run(intake, case_context)
-        root_cause = self.root_cause_service.run(intake, case_context, rag_context)
-        recommendation = self.recommendation_service.run(intake, case_context, rag_context, root_cause)
-        approval = self.hitl_service.run(intake, case_context, rag_context, root_cause, recommendation)
-        audit_record = self.audit_service.run(intake, case_context, rag_context, root_cause, recommendation, approval)
-        
-        return {
-            "intake": intake,
-            "case_context": case_context,
-            "rag_context": rag_context,
-            "root_cause": root_cause,
-            "recommendation": recommendation,
-            "approval": approval,
-            "audit_record": audit_record,
-        }
+    def resume_after_human_review(
+        self,
+        case_id: str,
+        request: HumanApprovalRequest,
+    ) -> FinalCaseSummary:
+        state = self.persistence.apply_human_decision(case_id=case_id, request=request)
+        if state is None:
+            raise ValueError(f"No persisted flow state found for case_id={case_id}")
+
+        # if rejected, keep blocked and finalize updated audit/summary
+        if request.approved:
+            state.workflow_status = WorkflowStatus.COMPLETED
+        else:
+            state.workflow_status = WorkflowStatus.BLOCKED
+
+        if state.approval_decision is not None:
+            if request.approved:
+                state.approval_decision.status = "AUTO_APPROVED"
+                state.approval_decision.requires_human_approval = False
+                state.approval_decision.reasons = [
+                    *state.approval_decision.reasons,
+                    f"Human reviewer {request.reviewer_name} approved case",
+                ]
+            else:
+                state.approval_decision.status = "BLOCKED"
+                state.approval_decision.reasons = [
+                    *state.approval_decision.reasons,
+                    f"Human reviewer {request.reviewer_name} rejected case",
+                ]
+
+        flow = TradeExceptionResolutionFlow()
+        flow.state = state
+        flow.state.current_stage = FlowStage.PERSIST_AUDIT_TRAIL
+        flow.state.updated_at_utc = utc_now()
+        flow._finalize_audit_and_persist()
+        flow.state.completed_at_utc = utc_now()
+        flow.state.current_stage = FlowStage.RETURN_FINAL_SUMMARY
+        flow.state.final_summary = flow._build_final_summary()
+        flow._persist_snapshot()
+
+        return flow.state.final_summary
