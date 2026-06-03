@@ -259,12 +259,6 @@ def build_reference_evidence(
                 )
             )
 
-    return refs
-                description="SSI master record retrieved from reference store",
-                fields_used=list(ssi.keys())[:12],
-            )
-        )
-
     if counterparty:
         refs.append(
             DataEvidenceRef(

@@ -140,10 +140,9 @@ class RetrievalAgentService:
             expected_output="A valid CaseContext object.",
             output_pydantic=CaseContext,
             agent=agent,
-        )
             similar_cases=similar_cases,
         )
-
+    
         return CaseContext(
             case_id=intake.case_id,
             trade=trade,
