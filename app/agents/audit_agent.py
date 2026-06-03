@@ -1,7 +1,9 @@
 # app/agents/audit_agent.py
 from __future__ import annotations
 
+from alembic.environment import Any, Dict, Optional
 from crewai import Task
+from matplotlib.pyplot import hist
 
 from app.agents.base import build_crewai_agent
 from app.schemas.agent_outputs import (
@@ -20,6 +22,8 @@ class AuditAgentService:
     Audit recorder. Assembles a complete, auditable case record for persistence and review.
     """
     
+    historical_learning_summary: Optional[Dict[str, Any]] = None
+
     def run(
         self,
         intake: IntakeResult,

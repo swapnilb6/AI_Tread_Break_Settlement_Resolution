@@ -359,3 +359,40 @@ def render_analytics_dashboard(history: List[Dict[str, Any]]) -> None:
             st.plotly_chart(fig4, use_container_width=True)
         except Exception as e:
             st.warning(f"Could not render recommendation confidence chart: {e}")
+
+def render_historical_cases_memory(state: Dict[str, Any]) -> None:
+    st.subheader("Historical Memory: Similar Resolved Cases")
+    memory = state.get("memory_context") or {}
+    cases = memory.get("episodic_cases") or []
+    if not cases:
+        st.info("No historical similar cases available.")
+        return
+    st.dataframe(pd.DataFrame(cases), use_container_width=True)
+
+def render_approval_history_memory(state: Dict[str, Any]) -> None:
+    st.subheader("Approval Memory")
+    memory = state.get("memory_context") or {}
+    approval_history = memory.get("approval_history") or []
+    stats = memory.get("approval_pattern_stats") or {}
+
+    if stats:
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Total Reviews", stats.get("total_reviews", 0))
+        c2.metric("Approval Rate", round(stats.get("approval_rate", 0.0) * 100, 1))
+        c3.metric("Override Rate", round(stats.get("override_rate", 0.0) * 100, 1))
+
+    if approval_history:
+        st.dataframe(pd.DataFrame(approval_history), use_container_width=True)
+    else:
+        st.info("No approval history available.")
+
+    hints = memory.get("recommendation_hints") or []
+    notes = memory.get("safety_notes") or []
+
+    if hints:
+        st.markdown("**Historical Recommendation Hints**")
+        for hint in hints:
+            st.markdown(f"- {hint}")
+
+    if notes:
+        st.warning("\n".join(notes))

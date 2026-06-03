@@ -159,6 +159,9 @@ class WorkflowPersistenceService:
                 "reviewer_decision": state.reviewer_decision.value,
                 "reviewer_name": state.reviewer_name,
                 "reviewer_comments": state.reviewer_comments,
+                "exception_type": state.intake_result.exception_type if state.intake_result else None,
+                "action_code": state.recommendation.action_code if state.recommendation else None,
+
             }
 
             for field_name, field_value in mapping.items():

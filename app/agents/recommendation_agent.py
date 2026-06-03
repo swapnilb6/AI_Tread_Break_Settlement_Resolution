@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from crewai import Task
-
+from app.schemas.memory import MemoryContext
 from app.agents.base import StructuredOutputRunner, build_crewai_agent
 from app.schemas.agent_outputs import (
     ActionRecommendation,
@@ -40,6 +40,12 @@ Rules:
 - action_title should be a clear title (e.g., "Escalate to Manual Review")
 - action_summary should be a single paragraph explaining the recommendation
 - action_steps should be 2-4 discrete, executable operational steps
+
+- Historical cases and approval history are support signals only.
+- Do not copy prior actions blindly.
+- If historical patterns conflict with current evidence or policy evidence, current evidence wins.
+- If approval history shows elevated rejection/override patterns, be more conservative.
+
 - confidence must be between 0.0 and 1.0
 """
 
@@ -48,27 +54,28 @@ class RecommendationAgentService:
     def __init__(self):
         self.runner = StructuredOutputRunner()
 
+    
     def run(
         self,
         intake: IntakeResult,
         case_context: CaseContext,
         rag_context: RAGContext,
         root_cause: RootCauseAssessment,
+        memory_context: MemoryContext | None = None,
     ) -> ActionRecommendation:
-        """
-        Recommend the safest and most effective next best action.
-        """
         payload = {
             "intake": intake.model_dump(mode="json"),
             "case_context": case_context.model_dump(mode="json"),
             "rag_context": rag_context.model_dump(mode="json"),
             "root_cause": root_cause.model_dump(mode="json"),
+            "memory_context": memory_context.model_dump(mode="json") if memory_context else None,
         }
         return self.runner.run(
             system_prompt=RECOMMENDATION_SYSTEM_PROMPT,
             user_payload=payload,
             output_model=ActionRecommendation,
         )
+
 
     @staticmethod
     def build_agent():

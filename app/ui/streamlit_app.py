@@ -9,11 +9,13 @@ import streamlit as st
 from app.ui.api_client import ApiClientError, WorkflowApiClient
 from app.ui.components import (
     render_analytics_dashboard,
+    render_approval_history_memory,
     render_approval_panel,
     render_case_timeline,
     render_confidence_timeline,
     render_decision_lineage,
     render_flow_progress,
+    render_historical_cases_memory,
     render_kpi_row,
     render_parsed_entities,
     render_policy_citations_panel,
@@ -240,6 +242,7 @@ def page_case_review() -> None:
         st.markdown("---")
         render_similar_cases_panel(state)
 
+    render_historical_cases_memory(state) 
 
 def page_approval_console() -> None:
     st.title("Page 4: Approval Console")
@@ -330,6 +333,7 @@ def page_audit_analytics() -> None:
         st.markdown("---")
 
     render_analytics_dashboard(st.session_state.case_history)
+    render_approval_history_memory(state)
 
 
 def main() -> None:

@@ -7,6 +7,7 @@ from typing import Any, Dict, List, Optional
 from uuid import uuid4
 
 from pydantic import Field
+from app.schemas.memory import MemoryContext
 
 from app.schemas.agent_outputs import (
     ActionRecommendation,
@@ -120,3 +121,4 @@ class CaseResolutionFlowState(StrictBaseModel):
 
     errors: List[str] = Field(default_factory=list)
     event_log: List[FlowEvent] = Field(default_factory=list)
+    memory_context: Optional[MemoryContext] = None

@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from typing import Any, Dict, Optional
 
 from crewai.flow.flow import Flow, listen, router, start
-
+from app.services.memory_service import MemoryService
 from app.agents.audit_agent import AuditAgentService
 from app.agents.hitl_agent import HITLAgentService
 from app.agents.intake_agent import IntakeAgentService
@@ -32,6 +32,7 @@ def utc_now() -> datetime:
 class TradeExceptionResolutionFlow(Flow[CaseResolutionFlowState]):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.memory_service = MemoryService()
 
         # Initialize agents
         self.intake_agent = IntakeAgentService()
@@ -150,6 +151,19 @@ class TradeExceptionResolutionFlow(Flow[CaseResolutionFlowState]):
 
         case_context = self.retrieval_agent.run(intake_result)
         self.state.case_context = case_context
+        
+        self.state.memory_context = self.memory_service.build_memory_context(
+            intake=self.state.intake_result,
+            case_context=case_context,
+        )
+
+        
+        self._event(
+            FlowStage.RETRIEVE_CASE_DATA,
+            "Memory context loaded",
+            episodic_cases=len(self.state.memory_context.episodic_cases) if self.state.memory_context else 0,
+            approval_history=len(self.state.memory_context.approval_history) if self.state.memory_context else 0,
+        )
 
         self._event(
             FlowStage.RETRIEVE_CASE_DATA,
@@ -211,6 +225,7 @@ class TradeExceptionResolutionFlow(Flow[CaseResolutionFlowState]):
             case_context=self.state.case_context,
             rag_context=self.state.rag_context,
             root_cause=root_cause,
+            memory_context=self.state.memory_context,
         )
         self.state.recommendation = recommendation
 
