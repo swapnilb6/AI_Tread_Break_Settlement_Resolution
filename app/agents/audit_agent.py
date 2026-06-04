@@ -3,7 +3,6 @@ from __future__ import annotations
 
 from alembic.environment import Any, Dict, Optional
 from crewai import Task
-from matplotlib.pyplot import hist
 
 from app.agents.base import build_crewai_agent
 from app.schemas.agent_outputs import (
