@@ -38,6 +38,9 @@ services:
       OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
       OPENAI_EMBEDDING_MODEL: ${OPENAI_EMBEDDING_MODEL:-text-embedding-3-small}
       PYTHONPATH: /app
+      CREWAI_DISABLE_TELEMETRY: "true"
+      OTEL_SDK_DISABLED: "true"
+
     volumes:
       - ./:/app
       - chroma_data:/app/storage/chroma
@@ -66,7 +69,11 @@ services:
       OPENAI_API_KEY: ${OPENAI_API_KEY}
       OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
       OPENAI_EMBEDDING_MODEL: ${OPENAI_EMBEDDING_MODEL:-text-embedding-3-small}
-      API_BASE_URL: http://api:8000
+      API_BASE_URL: http://api:8000    
+      PYTHONPATH: /app
+      CREWAI_DISABLE_TELEMETRY: "true"
+      OTEL_SDK_DISABLED: "true"
+
     volumes:
       - ./:/app
       - chroma_data:/app/storage/chroma
@@ -88,6 +95,7 @@ services:
       APP_ENV: ${APP_ENV:-docker}
       API_BASE_URL: http://api:8000
       CHROMA_PATH: /app/storage/chroma
+      PYTHONPATH: /app
     volumes:
       - ./:/app
       - chroma_data:/app/storage/chroma

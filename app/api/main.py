@@ -33,7 +33,7 @@ app.add_middleware(
 )
 
 app.include_router(health.router, prefix="/health", tags=["health"])
-app.include_router(cases.router, prefix="/api/v1/cases", tags=["cases"])
+app.include_router(cases.router, prefix="/api/v1")
 app.include_router(reference_data.router, tags=["reference-data"])
 
 

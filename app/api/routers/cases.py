@@ -24,7 +24,11 @@ def run_case_workflow(payload: Dict[str, Any]) -> FinalCaseSummary:
     try:
         return flow_runner.run(payload)
     except Exception as exc:
-        raise HTTPException(status_code=500, detail=f"Workflow execution failed: {exc}")
+        import traceback
+        raise HTTPException(
+            status_code=500,
+            detail=f"Workflow execution failed: {type(exc).__name__}: {exc}"
+        )
 
 
 @router.post("/{case_id}/approval", response_model=FinalCaseSummary)

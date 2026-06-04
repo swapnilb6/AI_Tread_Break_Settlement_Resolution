@@ -1,12 +1,12 @@
 # app/ui/session_state.py
+
 from __future__ import annotations
-
+import os
 from typing import Any, Dict, List
-
 import streamlit as st
 
+DEFAULT_API_BASE_URL = os.getenv("API_BASE_URL", "http://api:8000")
 
-DEFAULT_API_BASE_URL = "http://localhost:8000"
 
 
 def init_session_state() -> None:
