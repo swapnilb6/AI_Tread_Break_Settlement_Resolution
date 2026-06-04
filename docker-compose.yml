@@ -1,4 +1,5 @@
-services:services  postgres:
+services:
+  postgres:
     image: postgres:16
     container_name: cm_postgres
     environment:
@@ -36,16 +37,12 @@ services:services  postgres:
       OPENAI_API_KEY: ${OPENAI_API_KEY}
       OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
       OPENAI_EMBEDDING_MODEL: ${OPENAI_EMBEDDING_MODEL:-text-embedding-3-small}
+      PYTHONPATH: /app
     volumes:
       - ./:/app
       - chroma_data:/app/storage/chroma
     command: >
-      sh -c "
-      python -c 'from app.db.init_db import init_db; init_db()' &&
-      python app/synthetic_data/load_to_postgres.py &&
-      python app/rag/ingest.py
-      python app/bootstrap.py --data-dir /app/data/synthetic --policy-dir /app/data/policies
-      "
+      python -m app.bootstrap --data-dir /app/data/synthetic --policy-dir /app/data/policies --skip-rag
     restart: "no"
 
   api:
@@ -103,4 +100,3 @@ services:services  postgres:
 volumes:
   postgres_data:
   chroma_data:
-

@@ -1,7 +1,10 @@
+from __future__ import annotations
+
 import uuid
 from typing import Iterable
 
 from app.rag.chroma_client import get_collection
+from app.rag.embedder import OpenAIEmbedder
 
 
 def ingest_documents(documents: Iterable[dict]) -> int:
@@ -35,9 +38,14 @@ def ingest_documents(documents: Iterable[dict]) -> int:
     if not texts:
         return 0
 
+    embedder = OpenAIEmbedder()
+    embeddings = embedder.embed_texts(texts)
+
     collection.add(
         ids=ids,
         documents=texts,
         metadatas=metadatas,
+        embeddings=embeddings,
     )
+
     return len(texts)
