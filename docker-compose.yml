@@ -45,7 +45,7 @@ services:
       - ./:/app
       - chroma_data:/app/storage/chroma
     command: >
-      python -m app.bootstrap --data-dir /app/data/synthetic --policy-dir /app/data/policies --skip-rag
+      python -m app.bootstrap --data-dir /app/data/synthetic --policy-dir /app/data/policies
     restart: "no"
 
   api:
