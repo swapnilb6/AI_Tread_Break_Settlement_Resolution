@@ -13,13 +13,22 @@ from app.schemas.common import (
 )
 
 
+
+class ExtractedEntities(StrictBaseModel):
+    trade_id: str | None
+    settlement_id: str | None
+    counterparty: str | None
+    account_id: str | None
+    isin: str | None
+    currency: str | None
+
 class IntakeResult(StrictBaseModel):
     case_id: str
     exception_type: ExceptionType
     summary: str
-    extracted_entities: dict[str, Any] = Field(default_factory=dict)
-    missing_fields: list[str] = Field(default_factory=list)
-    confidence: float = Field(ge=0.0, le=1.0, default=0.0)
+    extracted_entities: ExtractedEntities
+    missing_fields: list[str]
+    confidence: float = Field(ge=0.0, le=1.0)
 
 
 class CaseContext(StrictBaseModel):

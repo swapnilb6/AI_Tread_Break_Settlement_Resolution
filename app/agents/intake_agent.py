@@ -4,6 +4,7 @@ from __future__ import annotations
 import uuid
 from datetime import datetime
 from crewai import Task
+from streamlit import json
 
 from app.agents.base import StructuredOutputRunner, build_crewai_agent
 from app.schemas.agent_outputs import IntakeResult
@@ -61,6 +62,11 @@ class IntakeAgentService:
     @staticmethod
     def build_task(payload: dict, agent=None) -> Task:
         agent = agent or IntakeAgentService.build_agent()
+
+        import json
+        print("IntakeResult schema:")
+        print(json.dumps(IntakeResult.model_json_schema(), indent=2))
+
         return Task(
             description=(
                 "Classify the incoming trade exception, extract identifiers, assign risk, "
